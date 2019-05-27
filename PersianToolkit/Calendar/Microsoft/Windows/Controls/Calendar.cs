@@ -7,6 +7,7 @@
 using Microsoft.Windows.Controls.Primitives;
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
@@ -88,6 +89,7 @@ namespace Microsoft.Windows.Controls
             EventManager.RegisterClassHandler(typeof(Calendar), UIElement.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
             LanguageProperty.OverrideMetadata(typeof(Calendar), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnLanguageChanged)));
 
+            
         }
 
         /// <summary>
@@ -99,7 +101,12 @@ namespace Microsoft.Windows.Controls
             _selectedDates = new SelectedDatesCollection(this);
             DisplayDate = DateTime.Today;
 
-            
+            var culture = System.Globalization.CultureInfo.CurrentCulture;
+            if (culture.LCID.Equals(1065))
+                SetFlowDirection(this, FlowDirection.RightToLeft);
+            else
+                SetFlowDirection(this, FlowDirection.LeftToRight);
+
         }
 
         #region Public Properties

@@ -8,7 +8,7 @@
         xmlns:pc="http://github.com/ghost1372/PersianToolkit"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
-        <pc:Calendar />
+        <pc:Calendar/>
         <pc:DatePicker/>
     </StackPanel>
 </Window>
