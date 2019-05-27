@@ -778,6 +778,10 @@ namespace Microsoft.Windows.Controls
             }
         }
 
+        public string SelectedDateToString()
+        {
+            return String.Format("{0:yyyy/MM/dd}", SelectedDate);
+        }
         #endregion Public Methods
 
         #region Protected Methods

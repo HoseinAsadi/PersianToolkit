@@ -556,9 +556,8 @@ namespace Microsoft.Windows.Controls
             if (c.SelectionMode != CalendarSelectionMode.None || e.NewValue == null)
             {
                 DateTime? addedDate;
-
+                
                 addedDate = (DateTime?)e.NewValue;
-
                 if (IsValidDateSelection(c, addedDate))
                 {
                     if (!addedDate.HasValue)
@@ -581,7 +580,6 @@ namespace Microsoft.Windows.Controls
                         {
                             c.CurrentDate = addedDate.Value;
                         }
-
                         c.UpdateCellItems();
                     }
                 }
@@ -596,6 +594,10 @@ namespace Microsoft.Windows.Controls
             }
         }
 
+        public string SelectedDateToString()
+        {
+            return String.Format("{0:yyyy/MM/dd}", _currentDate);
+        }
         #endregion SelectedDate
 
         #region SelectedDates
