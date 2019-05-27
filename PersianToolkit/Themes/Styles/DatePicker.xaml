@@ -4,7 +4,7 @@
  xmlns:primitives="clr-namespace:Microsoft.Windows.Controls.Primitives">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="DatePickerBaseStyle.xaml"/>
+        <ResourceDictionary Source="Base/DatePickerBaseStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style BasedOn="{StaticResource DatePickerBaseStyle}" TargetType="local:DatePicker"/>

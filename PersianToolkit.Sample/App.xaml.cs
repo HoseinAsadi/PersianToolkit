@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace PersianToolkit.Sample
 {
@@ -9,8 +10,18 @@ namespace PersianToolkit.Sample
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            ConfigHelper.Instance.SetLanguage(ConfigHelper.Language.Gregorian);
+            ConfigHelper.Instance.SetLanguage(ConfigHelper.Language.Persian);
             base.OnStartup(e);
+            UpdateSkin(SkinType.Dark);
+
+        }
+
+        internal void UpdateSkin(SkinType skin)
+        {
+            var skins0 = Resources.MergedDictionaries[0];
+            skins0.MergedDictionaries.Clear();
+            skins0.MergedDictionaries.Add(ResourceHelper.GetSkin(skin));
+            Current.MainWindow?.OnApplyTemplate();
         }
     }
 }

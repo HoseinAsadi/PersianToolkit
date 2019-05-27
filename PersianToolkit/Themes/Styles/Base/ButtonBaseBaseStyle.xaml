@@ -3,7 +3,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="BaseStyle.xaml"/>
-        <ResourceDictionary Source="Sizes.xaml"/>
+        <ResourceDictionary Source="../../Basic/Sizes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="ButtonBaseBaseStyle" BasedOn="{StaticResource BaseStyle}" TargetType="ButtonBase">

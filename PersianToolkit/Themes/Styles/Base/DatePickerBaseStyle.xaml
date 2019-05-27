@@ -5,9 +5,9 @@
                     xmlns:controls="clr-namespace:PersianToolkit"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
         <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="Converters.xaml"/>
-            <ResourceDictionary Source="Calendar.xaml"/>
-        </ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../../Basic/Converters.xaml"/>
+        <ResourceDictionary Source="../Calendar.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 
         <Style x:Key="DatePickerTextBoxStyle" TargetType="primitives:DatePickerTextBox">
             <Setter Property="Foreground" Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType=local:DatePicker}}"/>

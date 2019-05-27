@@ -3,7 +3,7 @@
                     xmlns:controls="clr-namespace:PersianToolkit">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ButtonBaseStyle.xaml"/>
+        <ResourceDictionary Source="Base/ButtonBaseStyle.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <Style BasedOn="{StaticResource ButtonBaseStyle}" TargetType="Button">

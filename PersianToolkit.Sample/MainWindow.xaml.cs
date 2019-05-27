@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace PersianToolkit.Sample
 {
@@ -10,7 +11,6 @@ namespace PersianToolkit.Sample
         public MainWindow()
         {
             InitializeComponent();
-
 
         }
     }

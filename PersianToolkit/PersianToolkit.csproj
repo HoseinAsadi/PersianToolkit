@@ -105,7 +105,9 @@
     <Compile Include="Tools\ConfigHelper.cs" />
     <Compile Include="Tools\IconElement.cs" />
     <Compile Include="Tools\InfoElement.cs" />
+    <Compile Include="Tools\ResourceHelper.cs" />
     <Compile Include="Tools\SimplePanel.cs" />
+    <Compile Include="Tools\SkinType.cs" />
     <Compile Include="Tools\TitleAlignment.cs" />
     <Compile Include="Tools\TitleElement.cs" />
     <Compile Include="Tools\ValueBoxes.cs" />
@@ -126,90 +128,91 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Style\BaseStyle.xaml">
+    <Page Include="Themes\Styles\Base\BaseStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Basic.xaml">
+    <Page Include="Themes\Basic\Basic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Brushes.xaml">
+    <Page Include="Themes\Basic\Brushes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Button.xaml">
+    <Page Include="Themes\Styles\Button.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\ButtonBaseBaseStyle.xaml">
+    <Page Include="Themes\Styles\Base\ButtonBaseBaseStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\ButtonBaseStyle.xaml">
+    <Page Include="Themes\Styles\Base\ButtonBaseStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Calendar.xaml">
+    <Page Include="Themes\Styles\Calendar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Colors\Colors.xaml">
+    <Page Include="Themes\Basic\Colors\Colors.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Colors\ColorsDark.xaml">
+    <Page Include="Themes\Basic\Colors\ColorsDark.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Colors\ColorsViolet.xaml">
+    <Page Include="Themes\Basic\Colors\ColorsViolet.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Converters.xaml">
+    <Page Include="Themes\Basic\Converters.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\DatePicker.xaml">
+    <Page Include="Themes\Styles\DatePicker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\DatePickerBaseStyle.xaml">
+    <Page Include="Themes\Styles\Base\DatePickerBaseStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Fonts.xaml">
+    <Page Include="Themes\Basic\Fonts.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Geometry.xaml">
+    <Page Include="Themes\Basic\Geometry.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Sizes.xaml">
+    <Page Include="Themes\Basic\Sizes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\SkinDark.xaml">
+    <Page Include="Themes\SkinDark.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\SkinDefault.xaml">
+    <Page Include="Themes\SkinDefault.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\SkinViolet.xaml">
+    <Page Include="Themes\SkinViolet.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Style.xaml">
+    <Page Include="Themes\Styles\Style.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Style\Theme.xaml">
+    <Page Include="Themes\Theme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
