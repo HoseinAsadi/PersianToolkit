@@ -43,6 +43,7 @@ namespace PersianToolkit
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo((int)language);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
         }
+
         public enum Language
         {
             Persian = 1065,

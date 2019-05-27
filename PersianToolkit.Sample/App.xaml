@@ -5,19 +5,11 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-             <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary>
-                <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="pack://application:,,,/PersianToolkit;component/Themes/SkinDefault.xaml"/>
-                </ResourceDictionary.MergedDictionaries>
-            </ResourceDictionary>
-            <ResourceDictionary>
-                <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="pack://application:,,,/PersianToolkit;component/Themes/Theme.xaml"/>
-                </ResourceDictionary.MergedDictionaries>
-            </ResourceDictionary>
-            
-        </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/PersianToolkit;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PersianToolkit;component/Themes/Theme.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>
        

@@ -87,6 +87,7 @@ namespace Microsoft.Windows.Controls
 
             EventManager.RegisterClassHandler(typeof(Calendar), UIElement.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
             LanguageProperty.OverrideMetadata(typeof(Calendar), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnLanguageChanged)));
+
         }
 
         /// <summary>
@@ -97,6 +98,8 @@ namespace Microsoft.Windows.Controls
             _blackoutDates = new CalendarBlackoutDatesCollection(this);
             _selectedDates = new SelectedDatesCollection(this);
             DisplayDate = DateTime.Today;
+
+            
         }
 
         #region Public Properties
@@ -502,6 +505,7 @@ namespace Microsoft.Windows.Controls
         private static void OnLanguageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Calendar c = d as Calendar;
+            
             if (DependencyPropertyHelper.GetValueSource(d, Calendar.FirstDayOfWeekProperty).BaseValueSource == BaseValueSource.Default)
             {
                 c.CoerceValue(FirstDayOfWeekProperty);
