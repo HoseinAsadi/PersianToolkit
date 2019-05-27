@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Basic.xaml"/>
+        <ResourceDictionary Source="Style.xaml"/>
+        <ResourceDictionary Source="SkinDark.xaml"/>
+        <ResourceDictionary Source="SkinViolet.xaml"/>
+        <ResourceDictionary Source="SkinDefault.xaml"/>
+
+    </ResourceDictionary.MergedDictionaries>
+
+  
+</ResourceDictionary>

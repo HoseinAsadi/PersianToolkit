@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28917.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersianToolkit", "PersianToolkit\PersianToolkit.csproj", "{A6A9C9F9-704B-4A3A-8B16-88021DA8F57F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersianToolkit.Sample", "PersianToolkit.Sample\PersianToolkit.Sample.csproj", "{584F95C4-7E7D-4AC0-8753-6B95FB6D9B6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6A9C9F9-704B-4A3A-8B16-88021DA8F57F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6A9C9F9-704B-4A3A-8B16-88021DA8F57F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6A9C9F9-704B-4A3A-8B16-88021DA8F57F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6A9C9F9-704B-4A3A-8B16-88021DA8F57F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{584F95C4-7E7D-4AC0-8753-6B95FB6D9B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{584F95C4-7E7D-4AC0-8753-6B95FB6D9B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{584F95C4-7E7D-4AC0-8753-6B95FB6D9B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{584F95C4-7E7D-4AC0-8753-6B95FB6D9B6D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB754B69-2684-41A9-B2F9-18CF26276D89}
+	EndGlobalSection
+EndGlobal
