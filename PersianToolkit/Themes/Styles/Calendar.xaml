@@ -75,6 +75,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="controls:HolidayHelper.Date" Value="{Binding}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="primitives:CalendarDayButton">
@@ -130,11 +131,16 @@
                         <Rectangle RadiusX="16" RadiusY="16" x:Name="TodayBackground" Fill="{DynamicResource DangerBrush}" Opacity="0"/>
                         <Rectangle x:Name="SelectedBackground" Fill="{DynamicResource PrimaryBrush}" Opacity="0" RadiusY="16" RadiusX="16"/>
                         <ContentPresenter x:Name="NormalText" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                            <TextElement.Foreground>
-                                <SolidColorBrush Color="{DynamicResource PrimaryTextColor}"/>
-                            </TextElement.Foreground>
                         </ContentPresenter>
                     </controls:SimplePanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="controls:HolidayHelper.IsHoliday" Value="True">
+                            <Setter Property="TextElement.Foreground" Value="Red"/>
+                        </Trigger>
+                        <Trigger Property="controls:HolidayHelper.IsHoliday" Value="False">
+                            <Setter Property="TextElement.Foreground" Value="#212121"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
