@@ -617,18 +617,20 @@ namespace Microsoft.Windows.Controls
                 x.SelectToken("month").ToString() == hijriNow.Month.ToString())
                     .Select(m => (string)m.SelectToken("title")).ToArray();
 
-                if (!string.IsNullOrEmpty(string.Join(", ", getPersianEvents)) && !string.IsNullOrEmpty(string.Join(", ", getHijriEvents)))
-                {
-                    holy.HolidyContent = string.Join(", ", getPersianEvents) + ", " + string.Join(", ", getHijriEvents);
-                }
-                else if (string.IsNullOrEmpty(string.Join(", ", getPersianEvents)))
-                {
-                    holy.HolidyContent = string.Join(", ", getHijriEvents);
-                }
-                else
-                {
-                    holy.HolidyContent = string.Join(", ", getPersianEvents);
-                }
+                string[] getGregorianEvents = oo["Gregorian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == c.SelectedDate.Value.Day.ToString() &&
+               x.SelectToken("month").ToString() == c.SelectedDate.ToString())
+                   .Select(m => (string)m.SelectToken("title")).ToArray();
+
+                var hijri = string.Join(",", getHijriEvents);
+                if (!string.IsNullOrEmpty(hijri))
+                    hijri = ", " + hijri;
+
+                var greog = string.Join(",", getGregorianEvents);
+                if (!string.IsNullOrEmpty(greog))
+                    greog = ", " + greog;
+
+                holy.HolidyContent = string.Join(", ", getPersianEvents) + hijri + greog;
+
             }
         }
 
@@ -654,6 +656,37 @@ namespace Microsoft.Windows.Controls
             }
         }
 
+        public string GetSelectedDateToGregorianDate()
+        {
+            GregorianCalendar pc = new GregorianCalendar();
+            if (SelectedDate != null)
+                return pc.GetYear(SelectedDate.Value) + "/" + pc.GetMonth(SelectedDate.Value).ToString("00") + "/" + pc.GetDayOfMonth(SelectedDate.Value).ToString("00");
+            else
+                return pc.GetYear(CurrentDate) + "/" + pc.GetMonth(CurrentDate).ToString("00") + "/" + pc.GetDayOfMonth(CurrentDate).ToString("00");
+        }
+
+        public IslamicDay GetSelectedDateToHijriDate(int HijriAdjust = -1)
+        {
+            IslamicDay hijriNow;
+            if (SelectedDate != null)
+                hijriNow = IslamicDateUtils.GregorianToIslamicDay(SelectedDate.Value.Year, SelectedDate.Value.Month, SelectedDate.Value.Day + HijriAdjust);
+            else
+                hijriNow = IslamicDateUtils.GregorianToIslamicDay(CurrentDate.Year, CurrentDate.Month, CurrentDate.Day + HijriAdjust);
+
+            return hijriNow;
+        }
+        public string GetSelectedDateToPersianDate()
+        {
+            PersianCalendar pc = new PersianCalendar();
+            if (SelectedDate != null)
+                return pc.GetYear(SelectedDate.Value) + "/" + pc.GetMonth(SelectedDate.Value).ToString("00") + "/" + pc.GetDayOfMonth(SelectedDate.Value).ToString("00");
+            else
+                return pc.GetYear(CurrentDate) + "/" + pc.GetMonth(CurrentDate).ToString("00") + "/" + pc.GetDayOfMonth(CurrentDate).ToString("00");
+        }
+        public string GetSelectedDateHolidayContent()
+        {
+            return holy.HolidyContent;
+        }
         public string SelectedDateToString()
         {
             return string.Format("{0:yyyy/MM/dd}", _currentDate);

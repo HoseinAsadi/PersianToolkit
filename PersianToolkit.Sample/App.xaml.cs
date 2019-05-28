@@ -9,7 +9,7 @@ namespace PersianToolkit.Sample
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            ConfigHelper.Instance.SetLanguage(ConfigHelper.Language.Persian);
+            ConfigHelper.Instance.SetLanguage(ConfigHelper.Language.Gregorian);
             UpdateSkin(SkinType.Default);
             base.OnStartup(e);
         }
