@@ -8,7 +8,7 @@
         <ResourceDictionary Source="../Basic/Geometry.xaml"/>
         <ResourceDictionary Source="Button.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    <primitives:HolidayHelper x:Key="HolidaySource"/>
+    <local:Calendar x:Key="HolidaySource"/>
     
     <Style x:Key="CalendarButtonStyle" TargetType="primitives:CalendarButton">
         <Setter Property="MinWidth" Value="10"/>
@@ -228,8 +228,9 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                     </Grid>
-                                    <Grid Visibility="Collapsed" x:Name="PART_HolidayView" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2">
-                                        <Label Name="lblHoliday" Content="{Binding Source={StaticResource HolidaySource}, Path=HolidyContent, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource LabelDanger}">
+                                    <Grid Width="240" Grid.ColumnSpan="3" Visibility="Collapsed" x:Name="PART_HolidayView" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2">
+                                        <Label HorizontalAlignment="Stretch" Style="{DynamicResource LabelDanger}">
+                                            <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Stretch" Name="lblHoliday" Text="{Binding Source={StaticResource HolidaySource}, Path=HolidyContent, UpdateSourceTrigger=PropertyChanged}"/>
                                         </Label>
                                     </Grid>
                                     </Grid>
@@ -249,7 +250,7 @@
                         <Trigger Property="controls:Holiday.ShowHoliday" Value="True">
                             <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Visible" />
                         </Trigger>
-                        <DataTrigger Binding="{Binding ElementName=lblHoliday, Path=Content}" Value="">
+                        <DataTrigger Binding="{Binding ElementName=lblHoliday, Path=Text}" Value="">
                             <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>

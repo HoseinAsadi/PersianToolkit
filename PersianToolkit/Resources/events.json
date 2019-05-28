@@ -36,96 +36,6 @@
   ],
 
   "Persian Calendar": [
-    { "holiday": true, "month": 1, "day": 1, "type": "Afghanistan",
-      "title": "جشن نوروز" },
-
-    { "holiday": true, "month": 1, "day": 2, "type": "Afghanistan",
-      "title": "جشن دهقان" },
-
-    { "holiday": false, "month": 2, "day": 5, "type": "Afghanistan",
-      "title": "روز مطبوعات" },
-
-    { "holiday": false, "month": 2, "day": 7, "type": "Afghanistan",
-      "title": "کودتای کمونیستی (سال ۱۳۵۷)" },
-
-    { "holiday": true, "month": 2, "day": 8, "type": "Afghanistan",
-      "title": "پیروزی جهاد مقدس افغانستان" },
-
-    { "holiday": false, "month": 2, "day": 16, "type": "Afghanistan",
-      "title": "روز قلم" },
-
-    { "holiday": false, "month": 4, "day": 26, "type": "Afghanistan",
-      "title": "کودتای سردار محمد داود خان" },
-
-    { "holiday": true, "month": 5, "day": 28, "type": "Afghanistan",
-      "title": "روز استرداد و استقلال افغانستان" },
-
-    { "holiday": true, "month": 6, "day": 18, "type": "Afghanistan",
-      "title": "روز شهادت قهرمان ملی افغانستان" },
-
-    { "holiday": false, "month": 7, "day": 16, "type": "Afghanistan",
-      "title": "روز هنر" },
-
-    { "holiday": false, "month": 7, "day": 26, "type": "Afghanistan",
-      "title": "روز ترانسپورت و ترانزیت" },
-
-    { "holiday": false, "month": 8, "day": 25, "type": "Afghanistan",
-      "title": "مطابق با (۱۶ نومبر) روز جهانی محصلان" },
-
-    { "holiday": false, "month": 9, "day": 30, "type": "Afghanistan",
-      "title": "شب یلدا" },
-
-    { "holiday": false, "month": 10, "day": 6, "type": "Afghanistan",
-      "title": "روز تجاوز قشون سرخ به افغانستان (سال ۱۳۵۸)" },
-
-    { "holiday": false, "month": 10, "day": 14, "type": "Afghanistan",
-      "title": "هفته تجلیل از قانون اساسی" },
-
-    { "holiday": false, "month": 10, "day": 15, "type": "Afghanistan",
-      "title": "هفته تجلیل از قانون اساسی" },
-
-    { "holiday": false, "month": 10, "day": 16, "type": "Afghanistan",
-      "title": "هفته تجلیل از قانون اساسی" },
-
-    { "holiday": false, "month": 10, "day": 17, "type": "Afghanistan",
-      "title": "هفته تجلیل از قانون اساسی" },
-
-    { "holiday": false, "month": 10, "day": 18, "type": "Afghanistan",
-      "title": "هفته تجلیل از قانون اساسی" },
-
-    { "holiday": false, "month": 10, "day": 19, "type": "Afghanistan",
-      "title": "هفته تجلیل از قانون اساسی" },
-
-    { "holiday": false, "month": 10, "day": 20, "type": "Afghanistan",
-      "title": "هفته تجلیل از قانون اساسی" },
-
-    { "holiday": false, "month": 11, "day": 1, "type": "Afghanistan",
-      "title": "مطابق با (۲۱ جنوری) روز بین‌المللی مبارزه با آلات انفجاری تعبیه‌شده" },
-
-    { "holiday": false, "month": 11, "day": 10, "type": "Afghanistan",
-      "title": "روز متعاقدین" },
-
-    { "holiday": true, "month": 11, "day": 26, "type": "Afghanistan",
-      "title": "روز شکست و خروج ارتش اتحاد جماهیر شوروی سوسیالیستی سابق از افغانستان" },
-
-    { "holiday": false, "month": 12, "day": 3, "type": "Afghanistan",
-      "title": "روز تکبیر و قیام مردم کابل در برابر قشون سرخ" },
-
-    { "holiday": false, "month": 12, "day": 9, "type": "Afghanistan",
-      "title": "روز سرباز" },
-
-    { "holiday": false, "month": 12, "day": 20, "type": "Afghanistan",
-      "title": "روز حفاظت از میراث‌های فرهنگی کشور" },
-
-    { "holiday": false, "month": 12, "day": 22, "type": "Afghanistan",
-      "title": "روز شهید وحدت ملی (۱۳۷۳)" },
-
-    { "holiday": false, "month": 12, "day": 24, "type": "Afghanistan",
-      "title": "روز قیام مردم هرات در برابر حکومت خلقی و پرچمی" },
-
-
-
-
 
     { "holiday": true, "month": 1, "day": 1, "type": "Iran",
       "title": "آغاز عید نوروز" },
@@ -996,32 +906,7 @@
   ],
 
   "Hijri Calendar": [
-    { "holiday": false, "month": 1, "day": 1, "type": "Islamic Afghanistan",
-      "title": "مطابق با اول محرم روز شهادت حضرت عمر فاروق (رض)" },
-    { "holiday": true, "month": 1, "day": 10, "type": "Islamic Afghanistan",
-      "title": "روز شهادت امام حسین (رض) و قیام عاشورا" },
-    { "holiday": true, "month": 3, "day": 12, "type": "Islamic Afghanistan",
-      "title": "ولادت حضرت رسول اکرم (ص)" },
-    { "holiday": false, "month": 9, "day": 21, "type": "Islamic Afghanistan",
-      "title": "شهادت حضرت علی (رض)" },
-    { "holiday": false, "month": 9, "day": 27, "type": "Islamic Afghanistan",
-      "title": "روز بزرگداشت از نزول قرآن عظیم‌الشأن" },
-    { "holiday": true, "month": 10, "day": 1, "type": "Islamic Afghanistan",
-      "title": "عید سعید فطر" },
-    { "holiday": true, "month": 10, "day": 2, "type": "Islamic Afghanistan",
-      "title": "عید سعید فطر، روز دوم" },
-    { "holiday": true, "month": 10, "day": 3, "type": "Islamic Afghanistan",
-      "title": "عید سعید فطر، روز سوم" },
-    { "holiday": true, "month": 12, "day": 9, "type": "Islamic Afghanistan",
-      "title": "روز عرفه (روز نیایش)" },
-    { "holiday": true, "month": 12, "day": 10, "type": "Islamic Afghanistan",
-      "title": "عید الاضحی (قربان)" },
-    { "holiday": true, "month": 12, "day": 11, "type": "Islamic Afghanistan",
-      "title": "عید الاضحی (قربان)، روز دوم" },
-    { "holiday": true, "month": 12, "day": 12, "type": "Islamic Afghanistan",
-      "title": "عید الاضحی (قربان)، روز سوم" },
-
-
+   
     { "holiday": false, "month": 1, "day": 1, "type": "Islamic Iran",
       "title": "آغاز سال هجری قمری" },
     { "holiday": true, "month": 1, "day": 9, "type": "Islamic Iran",

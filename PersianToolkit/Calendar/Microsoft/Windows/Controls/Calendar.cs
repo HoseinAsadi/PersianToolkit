@@ -5,8 +5,13 @@
 //---------------------------------------------------------------------------
 
 using Microsoft.Windows.Controls.Primitives;
+using Newtonsoft.Json.Linq;
+using PersianToolkit;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
@@ -20,7 +25,7 @@ namespace Microsoft.Windows.Controls
     /// </summary>
     [TemplatePart(Name = Calendar.ElementRoot, Type = typeof(Panel))]
     [TemplatePart(Name = Calendar.ElementMonth, Type = typeof(CalendarItem))]
-    public class Calendar : Control
+    public class Calendar : Control, INotifyPropertyChanged
     {
         #region Constants
 
@@ -43,6 +48,7 @@ namespace Microsoft.Windows.Controls
         private CalendarItem _monthControl;
         private readonly CalendarBlackoutDatesCollection _blackoutDates;
         private readonly SelectedDatesCollection _selectedDates;
+        internal static Calendar holy;
 
         #endregion Data
 
@@ -109,8 +115,8 @@ namespace Microsoft.Windows.Controls
             {
                 SetFlowDirection(this, FlowDirection.LeftToRight);
             }
+            holy = this;
         }
-
         #region Public Properties
 
         #region BlackoutDates
@@ -593,6 +599,58 @@ namespace Microsoft.Windows.Controls
             else
             {
                 throw new InvalidOperationException(SR.Get(SRID.Calendar_OnSelectedDateChanged_InvalidOperation));
+            }
+
+            if (Holiday.GetShowHoliday(c))
+            {
+                PersianCalendar pc = new PersianCalendar();
+
+                //Todo: every year must be checked
+                // -1 is HijriAdjustment for fixing right day
+                IslamicDay hijriNow = IslamicDateUtils.GregorianToIslamicDay(c.SelectedDate.Value.Year, c.SelectedDate.Value.Month, c.SelectedDate.Value.Day - 1);
+                JObject oo = JObject.Parse(PersianToolkit.Properties.Resources.events);
+                string[] getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == pc.GetDayOfMonth(Convert.ToDateTime(c.SelectedDate)).ToString() &&
+                x.SelectToken("month").ToString() == pc.GetMonth(Convert.ToDateTime(c.SelectedDate)).ToString())
+                    .Select(m => (string)m.SelectToken("title")).ToArray();
+
+                string[] getHijriEvents = oo["Hijri Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == hijriNow.Day.ToString() &&
+                x.SelectToken("month").ToString() == hijriNow.Month.ToString())
+                    .Select(m => (string)m.SelectToken("title")).ToArray();
+
+                if (!string.IsNullOrEmpty(string.Join(", ", getPersianEvents)) && !string.IsNullOrEmpty(string.Join(", ", getHijriEvents)))
+                {
+                    holy.HolidyContent = string.Join(", ", getPersianEvents) + ", " + string.Join(", ", getHijriEvents);
+                }
+                else if (string.IsNullOrEmpty(string.Join(", ", getPersianEvents)))
+                {
+                    holy.HolidyContent = string.Join(", ", getHijriEvents);
+                }
+                else
+                {
+                    holy.HolidyContent = string.Join(", ", getPersianEvents);
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private string _HolidyContent;
+
+        public string HolidyContent
+        {
+            get => _HolidyContent;
+            set
+            {
+                if (value != _HolidyContent)
+                {
+                    _HolidyContent = value;
+                    OnPropertyChanged("HolidyContent");
+                }
             }
         }
 

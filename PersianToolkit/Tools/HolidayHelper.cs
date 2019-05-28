@@ -1,25 +1,14 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using PersianToolkit;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Windows;
-using System.Windows.Documents;
 
 namespace Microsoft.Windows.Controls.Primitives
 {
-    public class HolidayHelper : INotifyPropertyChanged
+    public class HolidayHelper
     {
-        internal static HolidayHelper holy;
-
-        public HolidayHelper()
-        {
-            holy = this;
-        }
         public static DateTime GetDate(DependencyObject obj)
         {
             return (DateTime)obj.GetValue(DateProperty);
@@ -55,11 +44,6 @@ namespace Microsoft.Windows.Controls.Primitives
             x.SelectToken("month").ToString() == hijriNow.Month.ToString() && x.SelectToken("type").ToString() == "Islamic Iran")
                 .Select(m => (string)m.SelectToken("holiday")).ToArray();
 
-
-
-
-            holy.HolidyContent ="fgdg";
-
             if (string.Join(", ", getPersianEvents).Contains("True") || string.Join(", ", getHijriEvents).Contains("True"))
             {
                 return true;
@@ -67,28 +51,6 @@ namespace Microsoft.Windows.Controls.Primitives
             else
             {
                 return false;
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private string _HolidyContent;
-
-        public string HolidyContent
-        {
-            get { return _HolidyContent; }
-            set
-            {
-                if (value != _HolidyContent)
-                {
-                    _HolidyContent = value;
-                    OnPropertyChanged("HolidyContent");
-                }
             }
         }
         #region for Net 4.5 we can use async/await
@@ -142,6 +104,6 @@ namespace Microsoft.Windows.Controls.Primitives
             obj.SetValue(IsHolidayPropertyKey, value);
         }
 
-        
+
     }
 }
