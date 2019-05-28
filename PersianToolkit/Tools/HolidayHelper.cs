@@ -1,14 +1,25 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PersianToolkit;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace Microsoft.Windows.Controls.Primitives
 {
-    public class HolidayHelper
+    public class HolidayHelper : INotifyPropertyChanged
     {
+        internal static HolidayHelper holy;
+
+        public HolidayHelper()
+        {
+            holy = this;
+        }
         public static DateTime GetDate(DependencyObject obj)
         {
             return (DateTime)obj.GetValue(DateProperty);
@@ -36,7 +47,6 @@ namespace Microsoft.Windows.Controls.Primitives
             // -1 is HijriAdjustment for fixing right day
             IslamicDay hijriNow = IslamicDateUtils.GregorianToIslamicDay(date.Year, date.Month, date.Day - 1);
             JObject oo = JObject.Parse(PersianToolkit.Properties.Resources.events);
-
             string[] getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == pc.GetDayOfMonth(date).ToString() &&
             x.SelectToken("month").ToString() == pc.GetMonth(date).ToString() && x.SelectToken("type").ToString() == "Iran")
                 .Select(m => (string)m.SelectToken("holiday")).ToArray();
@@ -45,6 +55,10 @@ namespace Microsoft.Windows.Controls.Primitives
             x.SelectToken("month").ToString() == hijriNow.Month.ToString() && x.SelectToken("type").ToString() == "Islamic Iran")
                 .Select(m => (string)m.SelectToken("holiday")).ToArray();
 
+
+
+
+            holy.HolidyContent ="fgdg";
 
             if (string.Join(", ", getPersianEvents).Contains("True") || string.Join(", ", getHijriEvents).Contains("True"))
             {
@@ -56,6 +70,27 @@ namespace Microsoft.Windows.Controls.Primitives
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private string _HolidyContent;
+
+        public string HolidyContent
+        {
+            get { return _HolidyContent; }
+            set
+            {
+                if (value != _HolidyContent)
+                {
+                    _HolidyContent = value;
+                    OnPropertyChanged("HolidyContent");
+                }
+            }
+        }
         #region for Net 4.5 we can use async/await
         //private async static void DatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         //{
@@ -106,5 +141,7 @@ namespace Microsoft.Windows.Controls.Primitives
         {
             obj.SetValue(IsHolidayPropertyKey, value);
         }
+
+        
     }
 }

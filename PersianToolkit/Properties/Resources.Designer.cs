@@ -61,15 +61,38 @@ namespace PersianToolkit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {
-        ///  &quot;#source&quot;: [
-        ///    &quot;فهرست مناسبت‌های ایران و افغانستان که در پروژهٔ تقویم فارسی اندروید و توسط توسعه‌دهندگان آن و به کمک منابع زیر&quot;,
-        ///    &quot;تهیه نگه‌داری می‌شود. با توجه به زحمتی که برای گردآوردی آن کشیده شده است&quot;,
-        ///    &quot;پیشنهاد می‌شود آن را فقط در پروژه‌های متن‌باز و یا با ارجاع مناسب به منبع استفادهٔ مجدد کنید&quot;,
-        ///    &quot;و اگر اشکالی در یکی از مناسبت‌ها، عنوان یا تاریخ یا عدم وجود مناسبتی دیدید سریعاً پروژه را مطلع کنید، با تشکر&quot;,
+        ///   Looks up a localized string similar to [
+        ///  {
+        ///    &quot;mode&quot;: &quot;Persian&quot;,
+        ///    &quot;holiday&quot;: true,
+        ///    &quot;month&quot;: 1,
+        ///    &quot;day&quot;: 1,
+        ///    &quot;type&quot;: &quot;Iran&quot;,
+        ///    &quot;title&quot;: &quot;آغاز عید نوروز&quot;
+        ///  },
         ///
-        ///    &quot;http://calendar.ut.ac.ir/Fa/Tyear/Data%5Choliday-1394.pdf&quot;,
-        ///    &quot;http://pc [rest of string was truncated]&quot;;.
+        ///  {
+        ///    &quot;mode&quot;: &quot;Persian&quot;,
+        ///    &quot;holiday&quot;: true,
+        ///    &quot;month&quot;: 1,
+        ///    &quot;day&quot;: 2,
+        ///    &quot;type&quot;: &quot;Iran&quot;,
+        ///    &quot;title&quot;: &quot;عید نوروز&quot;
+        ///  },
+        ///
+        ///  {
+        ///    &quot;mode&quot;: &quot;Persian&quot;,
+        ///    &quot;holiday&quot;: false,
+        ///    &quot;month&quot;: 1,
+        ///    &quot;day&quot;: 2,
+        ///    &quot;type&quot;: &quot;Iran&quot;,
+        ///    &quot;title&quot;: &quot;هجوم به مدرسهٔ فیضیهٔ قم (۱۳۴۲ ه‍.ش)&quot;
+        ///  },
+        ///
+        ///  {
+        ///    &quot;mode&quot;: &quot;Persian&quot;,
+        ///    &quot;holiday&quot;: false,
+        ///    &quot;month [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string events {
             get {

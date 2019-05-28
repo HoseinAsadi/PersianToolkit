@@ -8,7 +8,8 @@
         <ResourceDictionary Source="../Basic/Geometry.xaml"/>
         <ResourceDictionary Source="Button.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
+    <primitives:HolidayHelper x:Key="HolidaySource"/>
+    
     <Style x:Key="CalendarButtonStyle" TargetType="primitives:CalendarButton">
         <Setter Property="MinWidth" Value="10"/>
         <Setter Property="MinHeight" Value="10"/>
@@ -188,6 +189,7 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Border Background="{Binding Path=(controls:TitleElement.Background),RelativeSource={RelativeSource TemplatedParent}}" Grid.ColumnSpan="3"/>
                                     <Button x:Name="PART_PreviousButton" Width="50" HorizontalAlignment="Left" Grid.Column="0" Height="50" Padding="16" Focusable="False" Grid.Row="0" Style="{StaticResource ButtonIcon}" controls:IconElement.Geometry="{StaticResource LeftGeometry}"/>
@@ -226,7 +228,11 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                     </Grid>
-                                </Grid>
+                                    <Grid Visibility="Collapsed" x:Name="PART_HolidayView" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2">
+                                        <Label Name="lblHoliday" Content="{Binding Source={StaticResource HolidaySource}, Path=HolidyContent, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource LabelDanger}">
+                                        </Label>
+                                    </Grid>
+                                    </Grid>
                             </Border>
                         </Border>
                     </controls:SimplePanel>
@@ -238,6 +244,13 @@
                         <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource  AncestorType=local:Calendar}}" Value="Decade">
                             <Setter Property="Visibility" TargetName="PART_MonthView" Value="Hidden"/>
                             <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
+                        </DataTrigger>
+
+                        <Trigger Property="controls:Holiday.ShowHoliday" Value="True">
+                            <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding ElementName=lblHoliday, Path=Content}" Value="">
+                            <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

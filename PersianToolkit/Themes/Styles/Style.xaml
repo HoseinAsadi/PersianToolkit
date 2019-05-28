@@ -3,7 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
       
         <ResourceDictionary Source="Button.xaml"/>
-      
+        <ResourceDictionary Source="Label.xaml"/>
         <ResourceDictionary Source="Calendar.xaml"/>
         <ResourceDictionary Source="DatePicker.xaml"/>
       
