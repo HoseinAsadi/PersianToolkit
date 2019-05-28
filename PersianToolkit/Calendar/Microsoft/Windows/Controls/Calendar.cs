@@ -7,7 +7,6 @@
 using Microsoft.Windows.Controls.Primitives;
 using System;
 using System.Diagnostics;
-using System.Threading;
 using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
@@ -89,7 +88,7 @@ namespace Microsoft.Windows.Controls
             EventManager.RegisterClassHandler(typeof(Calendar), UIElement.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
             LanguageProperty.OverrideMetadata(typeof(Calendar), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnLanguageChanged)));
 
-            
+
         }
 
         /// <summary>
@@ -101,12 +100,15 @@ namespace Microsoft.Windows.Controls
             _selectedDates = new SelectedDatesCollection(this);
             DisplayDate = DateTime.Today;
 
-            var culture = System.Globalization.CultureInfo.CurrentCulture;
+            System.Globalization.CultureInfo culture = System.Globalization.CultureInfo.CurrentCulture;
             if (culture.LCID.Equals(1065))
+            {
                 SetFlowDirection(this, FlowDirection.RightToLeft);
+            }
             else
+            {
                 SetFlowDirection(this, FlowDirection.LeftToRight);
-
+            }
         }
 
         #region Public Properties
@@ -512,7 +514,7 @@ namespace Microsoft.Windows.Controls
         private static void OnLanguageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Calendar c = d as Calendar;
-            
+
             if (DependencyPropertyHelper.GetValueSource(d, Calendar.FirstDayOfWeekProperty).BaseValueSource == BaseValueSource.Default)
             {
                 c.CoerceValue(FirstDayOfWeekProperty);
@@ -556,7 +558,7 @@ namespace Microsoft.Windows.Controls
             if (c.SelectionMode != CalendarSelectionMode.None || e.NewValue == null)
             {
                 DateTime? addedDate;
-                
+
                 addedDate = (DateTime?)e.NewValue;
                 if (IsValidDateSelection(c, addedDate))
                 {
@@ -596,7 +598,7 @@ namespace Microsoft.Windows.Controls
 
         public string SelectedDateToString()
         {
-            return String.Format("{0:yyyy/MM/dd}", _currentDate);
+            return string.Format("{0:yyyy/MM/dd}", _currentDate);
         }
         #endregion SelectedDate
 

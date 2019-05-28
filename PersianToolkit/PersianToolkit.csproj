@@ -116,6 +116,7 @@
     <Compile Include="Converter\String2VisibilityConverter.cs" />
     <Compile Include="Converter\String2VisibilityReConverter.cs" />
     <Compile Include="Tools\ConfigHelper.cs" />
+    <Compile Include="Tools\Holiday.cs" />
     <Compile Include="Tools\HolidayHelper.cs" />
     <Compile Include="Tools\IconElement.cs" />
     <Compile Include="Tools\InfoElement.cs" />

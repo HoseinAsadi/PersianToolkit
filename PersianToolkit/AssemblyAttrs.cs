@@ -28,6 +28,7 @@ using System.Windows.Markup;
     ResourceDictionaryLocation.SourceAssembly)]
 
 [assembly: XmlnsDefinition("http://github.com/ghost1372/PersianToolkit", "Microsoft.Windows.Controls")]
+[assembly: XmlnsDefinition("http://github.com/ghost1372/PersianToolkit", "PersianToolkit")]
 //[assembly: XmlnsDefinition("http://github.com/ghost1372/PersianToolkit", "Microsoft.Windows.Controls.Primitives")]
 
 // This line adds the public classes in this assembly and the System.Windows namespace to 

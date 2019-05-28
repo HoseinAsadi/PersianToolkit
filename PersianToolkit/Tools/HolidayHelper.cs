@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
+using PersianToolkit;
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
-namespace PersianToolkit
+namespace Microsoft.Windows.Controls.Primitives
 {
     public class HolidayHelper
     {
@@ -24,7 +24,7 @@ namespace PersianToolkit
 
         private static void DatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var date = GetDate(d);
+            DateTime date = GetDate(d);
             SetIsHoliday(d, CheckIsHoliday(date));
         }
 
@@ -34,22 +34,26 @@ namespace PersianToolkit
 
             //Todo: every year must be checked
             // -1 is HijriAdjustment for fixing right day
-            var hijriNow = IslamicDateUtils.GregorianToIslamicDay(date.Year, date.Month, date.Day - 1);
-            JObject oo = JObject.Parse(Properties.Resources.events);
+            IslamicDay hijriNow = IslamicDateUtils.GregorianToIslamicDay(date.Year, date.Month, date.Day - 1);
+            JObject oo = JObject.Parse(PersianToolkit.Properties.Resources.events);
 
-            var getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == pc.GetDayOfMonth(date).ToString() &&
+            string[] getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == pc.GetDayOfMonth(date).ToString() &&
             x.SelectToken("month").ToString() == pc.GetMonth(date).ToString() && x.SelectToken("type").ToString() == "Iran")
                 .Select(m => (string)m.SelectToken("holiday")).ToArray();
 
-            var getHijriEvents = oo["Hijri Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == hijriNow.Day.ToString() &&
+            string[] getHijriEvents = oo["Hijri Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == hijriNow.Day.ToString() &&
             x.SelectToken("month").ToString() == hijriNow.Month.ToString() && x.SelectToken("type").ToString() == "Islamic Iran")
                 .Select(m => (string)m.SelectToken("holiday")).ToArray();
 
 
             if (string.Join(", ", getPersianEvents).Contains("True") || string.Join(", ", getHijriEvents).Contains("True"))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         #region for Net 4.5 we can use async/await

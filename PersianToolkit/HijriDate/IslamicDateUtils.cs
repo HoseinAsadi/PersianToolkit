@@ -90,17 +90,17 @@ namespace PersianToolkit
                 1491, 29, 30, 29, 30, 29, 30, 30, 29, 30, 29, 30, 30
             };
 
-            var years = (int)Math.Ceiling(((float)hijriMonths.Length) / 13);
+            int years = (int)Math.Ceiling(((float)hijriMonths.Length) / 13);
             _yearsStartJd = new long[years];
             _supportedYearsStart = hijriMonths[0];
-            var jd = JdSupportStart;
-            for (var y = 0; y < years; ++y)
+            long jd = JdSupportStart;
+            for (int y = 0; y < years; ++y)
             {
-                var year = hijriMonths[y * 13];
+                int year = hijriMonths[y * 13];
 
                 _yearsStartJd[y] = jd;
-                var months = new long[12];
-                for (var m = 1; m < 13 && y * 13 + m < hijriMonths.Length; ++m)
+                long[] months = new long[12];
+                for (int m = 1; m < 13 && y * 13 + m < hijriMonths.Length; ++m)
                 {
                     months[m - 1] = jd;
                     jd += hijriMonths[y * 13 + m];
@@ -120,9 +120,11 @@ namespace PersianToolkit
         public static long HijriToJd(int year, int month, int day)
         {
             if (_yearsMonthsInJd == null)
+            {
                 throw new InvalidOperationException("yearsMonthsInJd is null.");
+            }
 
-            if (!_yearsMonthsInJd.TryGetValue(year, out var months))
+            if (!_yearsMonthsInJd.TryGetValue(year, out long[] months))
             {
                 return -1;
             }
@@ -138,8 +140,12 @@ namespace PersianToolkit
 
         private static int search(long[] array, long r)
         {
-            var i = 0;
-            while (i < array.Length && array[i] < r) ++i;
+            int i = 0;
+            while (i < array.Length && array[i] < r)
+            {
+                ++i;
+            }
+
             return i;
         }
 
@@ -151,21 +157,23 @@ namespace PersianToolkit
         public static int[] JdToHijri(long jd)
         {
             if (jd < JdSupportStart || jd >= _jdSupportEnd || _yearsStartJd == null)
+            {
                 return null;
+            }
 
-            var yearIndex = search(_yearsStartJd, jd);
-            var year = yearIndex + _supportedYearsStart - 1;
-            var yearMonths = _yearsMonthsInJd[year];
+            int yearIndex = search(_yearsStartJd, jd);
+            int year = yearIndex + _supportedYearsStart - 1;
+            long[] yearMonths = _yearsMonthsInJd[year];
             if (yearMonths == null)
             {
                 return null;
             }
-            var month = search(yearMonths, jd);
+            int month = search(yearMonths, jd);
             if (yearMonths[month - 1] == 0)
             {
                 return null;
             }
-            var day = (int)(jd - yearMonths[month - 1]);
+            int day = (int)(jd - yearMonths[month - 1]);
             return new[] { year, month, day };
         }
 
@@ -188,14 +196,16 @@ namespace PersianToolkit
         /// <returns></returns>
         public static PersianDay JdnToPersianDay(long jdn)
         {
-            var depoch = jdn - PersianDayToJdn(475, 1, 1);
-            var cycle = depoch / 1029983;
-            var cyear = depoch % 1029983;
+            long depoch = jdn - PersianDayToJdn(475, 1, 1);
+            long cycle = depoch / 1029983;
+            long cyear = depoch % 1029983;
             long ycycle;
             long aux1, aux2;
 
             if (cyear == 1029982)
+            {
                 ycycle = 2820;
+            }
             else
             {
                 aux1 = cyear / 366;
@@ -207,13 +217,19 @@ namespace PersianToolkit
             int year, month, day;
             year = (int)(ycycle + (2820 * cycle) + 474);
             if (year <= 0)
+            {
                 year = year - 1;
+            }
 
             long yday = (jdn - PersianDayToJdn(year, 1, 1)) + 1;
             if (yday <= 186)
+            {
                 month = (int)Math.Ceiling(yday / 31d);
+            }
             else
+            {
                 month = (int)Math.Ceiling((yday - 6) / 30d);
+            }
 
             day = (int)(jdn - PersianDayToJdn(year, month, 1)) + 1;
             return new PersianDay(year, month, day);
@@ -232,17 +248,25 @@ namespace PersianToolkit
 
             long epbase;
             if (year >= 0)
+            {
                 epbase = year - 474;
+            }
             else
+            {
                 epbase = year - 473;
+            }
 
-            var epyear = 474 + (epbase % 2820);
+            long epyear = 474 + (epbase % 2820);
 
             long mdays;
             if (month <= 7)
+            {
                 mdays = (month - 1) * 31;
+            }
             else
+            {
                 mdays = (month - 1) * 30 + 6;
+            }
 
             return day + mdays + ((epyear * 682) - 110) / 2816 + (epyear - 1) * 365
                     + epbase / 2820 * 1029983 + (PERSIAN_EPOCH - 1);
@@ -260,7 +284,9 @@ namespace PersianToolkit
             long tableResult = HijriToJd(year, month, day);
 
             if (tableResult != -1)
+            {
                 return tableResult;
+            }
 
             // NMONTH is the number of months between julian day number 1 and
             // the year 1405 A.H. which started immediatly after lunar
@@ -268,7 +294,9 @@ namespace PersianToolkit
             // 3h 10m UT.
 
             if (year < 0)
+            {
                 year++;
+            }
 
             long k = month + year * 12 - NMonths; // nunber of months since 1/1/1405
 
@@ -283,20 +311,26 @@ namespace PersianToolkit
             const float TIMZ = 3f, MINAGE = 13.5f, SUNSET = 19.5f, // approximate
                     TIMDIF = (SUNSET - MINAGE);
 
-            var jd = toMoonPhase(n, 0);
-            var d = (long)Math.Floor(jd);
+            double jd = toMoonPhase(n, 0);
+            long d = (long)Math.Floor(jd);
 
-            var tf = (jd - d);
+            double tf = (jd - d);
 
             if (tf <= 0.5) // new moon starts in the afternoon
+            {
                 return (jd + 1f);
+            }
             else
             { // new moon starts before noon
                 tf = (tf - 0.5) * 24 + TIMZ; // local time
                 if (tf > TIMDIF)
+                {
                     return (jd + 1d); // age at sunset < min for visiblity
+                }
                 else
+                {
                     return jd;
+                }
             }
         }
 
@@ -307,24 +341,24 @@ namespace PersianToolkit
 
             double xtra;
 
-            var k = n + nph / 4d;
-            var T = k / 1236.85;
-            var t2 = T * T;
-            var t3 = t2 * T;
-            var jd = 2415020.75933 + 29.53058868 * k - 0.0001178 * t2
+            double k = n + nph / 4d;
+            double T = k / 1236.85;
+            double t2 = T * T;
+            double t3 = t2 * T;
+            double jd = 2415020.75933 + 29.53058868 * k - 0.0001178 * t2
                     - 0.000000155 * t3 + 0.00033
                     * Math.Sin(RPD * (166.56 + 132.87 * T - 0.009173 * t2));
 
             // Sun's mean anomaly
-            var sa = RPD
+            double sa = RPD
                     * (359.2242 + 29.10535608 * k - 0.0000333 * t2 - 0.00000347 * t3);
 
             // Moon's mean anomaly
-            var ma = RPD
+            double ma = RPD
                     * (306.0253 + 385.81691806 * k + 0.0107306 * t2 + 0.00001236 * t3);
 
             // Moon's argument of latitude
-            var tf = RPD
+            double tf = RPD
                     * 2d
                     * (21.2964 + 390.67050646 * k - 0.0016528 * t2 - 0.00000239 * t3);
 
@@ -353,11 +387,15 @@ namespace PersianToolkit
                             + 0.0004 * Math.Sin(sa - 2 * ma) - 0.0003
                             * Math.Sin(2 * sa + ma);
                     if (nph == 1)
+                    {
                         xtra = xtra + 0.0028 - 0.0004 * Math.Cos(sa) + 0.0003
                                 * Math.Cos(ma);
+                    }
                     else
+                    {
                         xtra = xtra - 0.0028 + 0.0004 * Math.Cos(sa) - 0.0003
                                 * Math.Cos(ma);
+                    }
 
                     break;
                 default:
@@ -374,18 +412,18 @@ namespace PersianToolkit
         /// <returns></returns>
         public static IslamicDay JdnToIslamicDay(long jd)
         {
-            var tableResult = JdToHijri(jd);
+            int[] tableResult = JdToHijri(jd);
             if (tableResult != null)
             {
                 return new IslamicDay(tableResult[0], tableResult[1], tableResult[2]);
             }
 
-            var gregorian = JdnToGregorianDateTime(jd);
-            var year = gregorian.Year;
-            var month = gregorian.Month;
-            var day = gregorian.Day;
+            DateTime gregorian = JdnToGregorianDateTime(jd);
+            int year = gregorian.Year;
+            int month = gregorian.Month;
+            int day = gregorian.Day;
 
-            var k = (long)Math.Floor(0.6 + (year + (month % 2 == 0 ? month : month - 1) / 12d
+            long k = (long)Math.Floor(0.6 + (year + (month % 2 == 0 ? month : month - 1) / 12d
                     + day / 365f - 1900) * 12.3685);
 
             double mjd;
@@ -396,7 +434,7 @@ namespace PersianToolkit
             } while (mjd > (jd - 0.5));
 
             k = k + 1;
-            var hm = k - 1048;
+            long hm = k - 1048;
 
             year = 1405 + (int)(hm / 12);
             month = (int)(hm % 12) + 1;
@@ -408,7 +446,9 @@ namespace PersianToolkit
             }
 
             if (year <= 0)
+            {
                 year = year - 1;
+            }
 
             day = (int)Math.Floor(jd - mjd + 0.5);
 
@@ -422,18 +462,21 @@ namespace PersianToolkit
         /// <returns></returns>
         public static DateTime JdnToGregorianDateTime(long jdn)
         {
-            if (jdn <= 2299160) return JdnToJulian(jdn);
+            if (jdn <= 2299160)
+            {
+                return JdnToJulian(jdn);
+            }
 
-            var l = jdn + 68569;
-            var n = ((4 * l) / 146097);
+            long l = jdn + 68569;
+            long n = ((4 * l) / 146097);
             l = l - ((146097 * n + 3) / 4);
-            var i = ((4000 * (l + 1)) / 1461001);
+            long i = ((4000 * (l + 1)) / 1461001);
             l = l - ((1461 * i) / 4) + 31;
-            var j = ((80 * l) / 2447);
-            var day = (int)(l - ((2447 * j) / 80));
+            long j = ((80 * l) / 2447);
+            int day = (int)(l - ((2447 * j) / 80));
             l = (j / 11);
-            var month = (int)(j + 2 - 12 * l);
-            var year = (int)(100 * (n - 49) + i + l);
+            int month = (int)(j + 2 - 12 * l);
+            int year = (int)(100 * (n - 49) + i + l);
             return new DateTime(year, month, day);
         }
 
@@ -444,16 +487,16 @@ namespace PersianToolkit
         /// <returns></returns>
         public static DateTime JdnToJulian(long jdn)
         {
-            var j = jdn + 1402;
-            var k = ((j - 1) / 1461);
-            var l = j - 1461 * k;
-            var n = ((l - 1) / 365) - (l / 1461);
-            var i = l - 365 * n + 30;
+            long j = jdn + 1402;
+            long k = ((j - 1) / 1461);
+            long l = j - 1461 * k;
+            long n = ((l - 1) / 365) - (l / 1461);
+            long i = l - 365 * n + 30;
             j = ((80 * i) / 2447);
-            var day = (int)(i - ((2447 * j) / 80));
+            int day = (int)(i - ((2447 * j) / 80));
             i = (j / 11);
-            var month = (int)(j + 2 - 12 * i);
-            var year = (int)(4 * k + n + i - 4716);
+            int month = (int)(j + 2 - 12 * i);
+            int year = (int)(4 * k + n + i - 4716);
 
             return new DateTime(year, month, day);
         }

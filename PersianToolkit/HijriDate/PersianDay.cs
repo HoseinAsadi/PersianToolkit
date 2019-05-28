@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PersianToolkit
+﻿namespace PersianToolkit
 {
     /// <summary>
     /// اجزای روز شمسی
@@ -56,13 +50,15 @@ namespace PersianToolkit
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            var day = obj as PersianDay;
+            PersianDay day = obj as PersianDay;
             if (day == null)
+            {
                 return false;
+            }
 
-            return this.Year == day.Year &&
-                   this.Month == day.Month &&
-                   this.Day == day.Day;
+            return Year == day.Year &&
+                   Month == day.Month &&
+                   Day == day.Day;
         }
 
         /// <summary>
@@ -73,7 +69,7 @@ namespace PersianToolkit
         {
             unchecked
             {
-                var hash = 17;
+                int hash = 17;
                 hash = hash * 23 + Year.GetHashCode();
                 hash = hash * 23 + Month.GetHashCode();
                 hash = hash * 23 + Day.GetHashCode();

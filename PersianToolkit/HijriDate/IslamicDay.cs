@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PersianToolkit
+﻿namespace PersianToolkit
 {
     /// <summary>
 
@@ -106,19 +100,18 @@ namespace PersianToolkit
 
         {
 
-            var day = obj as IslamicDay;
+            IslamicDay day = obj as IslamicDay;
 
             if (day == null)
-
+            {
                 return false;
+            }
 
+            return Year == day.Year &&
 
+                   Month == day.Month &&
 
-            return this.Year == day.Year &&
-
-                   this.Month == day.Month &&
-
-                   this.Day == day.Day;
+                   Day == day.Day;
 
         }
 
@@ -140,7 +133,7 @@ namespace PersianToolkit
 
             {
 
-                var hash = 17;
+                int hash = 17;
 
                 hash = hash * 23 + Year.GetHashCode();
 

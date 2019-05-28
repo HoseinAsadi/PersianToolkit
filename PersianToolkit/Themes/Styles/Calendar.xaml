@@ -75,7 +75,6 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="controls:HolidayHelper.Date" Value="{Binding}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="primitives:CalendarDayButton">
@@ -138,7 +137,7 @@
                         </ContentPresenter>
                     </controls:SimplePanel>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="controls:HolidayHelper.IsHoliday" Value="True">
+                        <Trigger Property="primitives:HolidayHelper.IsHoliday" Value="True">
                             <Setter Property="Opacity" Value="1" TargetName="HolidayBackground"/>
                             <Setter Property="TextElement.Foreground" TargetName="NormalText" Value="White"/>
                         </Trigger>
@@ -149,6 +148,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="controls:Holiday.ShowHoliday" Value="True">
+                <Setter Property="primitives:HolidayHelper.Date" Value="{Binding}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="primitives:CalendarItem">

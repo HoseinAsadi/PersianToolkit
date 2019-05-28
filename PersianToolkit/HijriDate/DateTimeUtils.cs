@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersianToolkit
 {
@@ -33,7 +30,7 @@ namespace PersianToolkit
 #if NET40 || NET45 || NET46
                 throw new PlatformNotSupportedException($"This OS[{Environment.OSVersion.Platform}, {Environment.OSVersion.Version}] doesn't support IranStandardTime.");
 #else
-               // throw new PlatformNotSupportedException($"This OS[{System.Runtime.InteropServices.RuntimeInformation.OSDescription}] doesn't support IranStandardTime.");
+                // throw new PlatformNotSupportedException($"This OS[{System.Runtime.InteropServices.RuntimeInformation.OSDescription}] doesn't support IranStandardTime.");
 #endif
             }
         }
@@ -58,8 +55,8 @@ namespace PersianToolkit
         /// <returns>سن</returns>
         public static int GetAge(this DateTimeOffset birthday)
         {
-            var birthdayDateTime = birthday.UtcDateTime;
-            var now = DateTime.UtcNow;
+            DateTime birthdayDateTime = birthday.UtcDateTime;
+            DateTime now = DateTime.UtcNow;
             return GetAge(birthdayDateTime, now);
         }
 
@@ -71,9 +68,12 @@ namespace PersianToolkit
         /// <returns>سن</returns>
         public static int GetAge(this DateTime birthday, DateTime comparisonBase)
         {
-            var now = comparisonBase;
-            var age = now.Year - birthday.Year;
-            if (now < birthday.AddYears(age)) age--;
+            DateTime now = comparisonBase;
+            int age = now.Year - birthday.Year;
+            if (now < birthday.AddYears(age))
+            {
+                age--;
+            }
 
             return age;
         }
@@ -86,7 +86,7 @@ namespace PersianToolkit
         /// <returns>سن</returns>
         public static int GetAge(this DateTime birthday)
         {
-            var now = birthday.Kind.GetNow();
+            DateTime now = birthday.Kind.GetNow();
             return GetAge(birthday, now);
         }
 
@@ -171,7 +171,7 @@ namespace PersianToolkit
         /// <summary>
         /// Checks the given date is between the two provided dates
         /// </summary>
-        public static bool IsBetween(this DateTime date, DateTime startDate, DateTime endDate, Boolean compareTime = false)
+        public static bool IsBetween(this DateTime date, DateTime startDate, DateTime endDate, bool compareTime = false)
         {
             return compareTime ? date >= startDate && date <= endDate : date.Date >= startDate.Date && date.Date <= endDate.Date;
         }
@@ -208,7 +208,9 @@ namespace PersianToolkit
         public static DateTimeOffset ToDateTimeOffset(this DateTime dt, TimeSpan offset)
         {
             if (dt == DateTime.MinValue)
+            {
                 return DateTimeOffset.MinValue;
+            }
 
             return new DateTimeOffset(dt.Ticks, offset);
         }
@@ -219,6 +221,8 @@ namespace PersianToolkit
         /// <param name="dt">Source DateTime.</param>
         /// <param name="offsetInHours">Offset</param>
         public static DateTimeOffset ToDateTimeOffset(this DateTime dt, double offsetInHours = 0)
-            => ToDateTimeOffset(dt, offsetInHours == 0 ? TimeSpan.Zero : TimeSpan.FromHours(offsetInHours));
+        {
+            return ToDateTimeOffset(dt, offsetInHours == 0 ? TimeSpan.Zero : TimeSpan.FromHours(offsetInHours));
+        }
     }
 }
