@@ -140,6 +140,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="controls:HolidayHelper.IsHoliday" Value="True">
                             <Setter Property="Opacity" Value="1" TargetName="HolidayBackground"/>
+                            <Setter Property="TextElement.Foreground" TargetName="NormalText" Value="White"/>
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Opacity" Value="0" TargetName="HolidayBackground"/>
