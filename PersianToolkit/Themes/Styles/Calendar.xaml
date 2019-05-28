@@ -130,15 +130,19 @@
                         </VisualStateManager.VisualStateGroups>
                         <Rectangle RadiusX="16" RadiusY="16" x:Name="TodayBackground" Fill="{DynamicResource DangerBrush}" Opacity="0"/>
                         <Rectangle x:Name="SelectedBackground" Fill="{DynamicResource PrimaryBrush}" Opacity="0" RadiusY="16" RadiusX="16"/>
+                        <Rectangle x:Name="HolidayBackground" Fill="{DynamicResource WarningBrush}" Opacity="0" RadiusY="16" RadiusX="16"/>
                         <ContentPresenter x:Name="NormalText" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <TextElement.Foreground>
+                                <SolidColorBrush Color="{DynamicResource PrimaryTextColor}"/>
+                            </TextElement.Foreground>
                         </ContentPresenter>
                     </controls:SimplePanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="controls:HolidayHelper.IsHoliday" Value="True">
-                            <Setter Property="TextElement.Foreground" Value="Red"/>
+                            <Setter Property="Opacity" Value="1" TargetName="HolidayBackground"/>
                         </Trigger>
-                        <Trigger Property="controls:HolidayHelper.IsHoliday" Value="False">
-                            <Setter Property="TextElement.Foreground" Value="#212121"/>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Opacity" Value="0" TargetName="HolidayBackground"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

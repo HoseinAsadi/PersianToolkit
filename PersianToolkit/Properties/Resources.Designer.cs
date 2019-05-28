@@ -59,5 +59,22 @@ namespace PersianToolkit.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {
+        ///  &quot;#source&quot;: [
+        ///    &quot;فهرست مناسبت‌های ایران و افغانستان که در پروژهٔ تقویم فارسی اندروید و توسط توسعه‌دهندگان آن و به کمک منابع زیر&quot;,
+        ///    &quot;تهیه نگه‌داری می‌شود. با توجه به زحمتی که برای گردآوردی آن کشیده شده است&quot;,
+        ///    &quot;پیشنهاد می‌شود آن را فقط در پروژه‌های متن‌باز و یا با ارجاع مناسب به منبع استفادهٔ مجدد کنید&quot;,
+        ///    &quot;و اگر اشکالی در یکی از مناسبت‌ها، عنوان یا تاریخ یا عدم وجود مناسبتی دیدید سریعاً پروژه را مطلع کنید، با تشکر&quot;,
+        ///
+        ///    &quot;http://calendar.ut.ac.ir/Fa/Tyear/Data%5Choliday-1394.pdf&quot;,
+        ///    &quot;http://pc [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string events {
+            get {
+                return ResourceManager.GetString("events", resourceCulture);
+            }
+        }
     }
 }

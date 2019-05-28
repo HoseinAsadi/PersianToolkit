@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace PersianToolkit
 {
@@ -21,19 +25,38 @@ namespace PersianToolkit
         public static readonly DependencyProperty DateProperty =
         DependencyProperty.RegisterAttached("Date", typeof(DateTime), typeof(HolidayHelper), new PropertyMetadata { PropertyChangedCallback = DatePropertyChanged });
 
-        private static void DatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private async static void DatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var date = GetDate(d);
-            SetIsHoliday(d, CheckIsHoliday(date));
+            SetIsHoliday(d, await CheckIsHoliday(date));
         }
 
-        private static bool CheckIsHoliday(DateTime date)
+        private static async Task<bool> CheckIsHoliday(DateTime date)
         {
-            if (date.Date.ToShortDateString().Equals("16/03/1398"))
-                return true;
-            else
-                return false;
-           
+            bool result = false;
+            await Task.Run(() => {
+                PersianCalendar pc = new PersianCalendar();
+
+                //Todo: every year must be checked
+                // -1 is HijriAdjustment for fixing right day
+                var hijriNow = IslamicDateUtils.GregorianToIslamicDay(date.Year, date.Month, date.Day - 1);
+                JObject oo = JObject.Parse(Properties.Resources.events);
+
+                var getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == pc.GetDayOfMonth(date).ToString() &&
+                x.SelectToken("month").ToString() == pc.GetMonth(date).ToString() && x.SelectToken("type").ToString() == "Iran")
+                    .Select(m => (string)m.SelectToken("holiday")).ToArray();
+
+                var getHijriEvents = oo["Hijri Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == hijriNow.Day.ToString() &&
+                x.SelectToken("month").ToString() == hijriNow.Month.ToString() && x.SelectToken("type").ToString() == "Islamic Iran")
+                    .Select(m => (string)m.SelectToken("holiday")).ToArray();
+
+
+                if (string.Join(", ", getPersianEvents).Contains("True") || string.Join(", ", getHijriEvents).Contains("True"))
+                    result = true;
+                else
+                    result = false;
+            });
+            return result;
         }
 
         private static readonly DependencyPropertyKey IsHolidayPropertyKey =
