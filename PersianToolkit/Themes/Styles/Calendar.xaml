@@ -5,7 +5,7 @@
                     xmlns:controls="clr-namespace:PersianToolkit">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Basic/Geometry.xaml"/>
+        <ResourceDictionary Source="../Basic/Geometries.xaml"/>
         <ResourceDictionary Source="Button.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <local:Calendar x:Key="HolidaySource"/>

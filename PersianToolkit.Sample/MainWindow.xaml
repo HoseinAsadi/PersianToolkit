@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersianToolkit.Sample"
         mc:Ignorable="d"
+        
         xmlns:pc="http://github.com/ghost1372/PersianToolkit"
         Title="MainWindow" Height="450" Width="800">
     <StackPanel>
+        <StackPanel Margin="10" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="btnDef" Content="Default Theme" Click="BtnDef_Click"/>
+            <Button x:Name="btnDark" Content="Dark Theme" Click="BtnDark_Click"/>
+            <Button x:Name="btnVio" Content="Violet Theme" Click="BtnVio_Click"/>
+        </StackPanel>
         <pc:Calendar FontFamily="IranSans" pc:Holiday.ShowHoliday="True"/>
         <pc:DatePicker/>
     </StackPanel>

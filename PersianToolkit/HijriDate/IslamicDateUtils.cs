@@ -487,18 +487,28 @@ namespace PersianToolkit
         /// <returns></returns>
         public static DateTime JdnToJulian(long jdn)
         {
-            long j = jdn + 1402;
-            long k = ((j - 1) / 1461);
-            long l = j - 1461 * k;
-            long n = ((l - 1) / 365) - (l / 1461);
-            long i = l - 365 * n + 30;
-            j = ((80 * i) / 2447);
-            int day = (int)(i - ((2447 * j) / 80));
-            i = (j / 11);
-            int month = (int)(j + 2 - 12 * i);
-            int year = (int)(4 * k + n + i - 4716);
+            DateTime dateTime = new DateTime();
+            try
+            {
+                long j = jdn + 1402;
+                long k = ((j - 1) / 1461);
+                long l = j - 1461 * k;
+                long n = ((l - 1) / 365) - (l / 1461);
+                long i = l - 365 * n + 30;
+                j = ((80 * i) / 2447);
+                int day = (int)(i - ((2447 * j) / 80));
+                i = (j / 11);
+                int month = (int)(j + 2 - 12 * i);
+                int year = (int)(4 * k + n + i - 4716);
 
-            return new DateTime(year, month, day);
+                dateTime = new DateTime(year, month, day);
+            }
+            catch
+            {
+
+            }
+
+            return dateTime;
         }
 
         /// <summary>

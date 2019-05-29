@@ -2,12 +2,11 @@
 
     <ResourceDictionary.MergedDictionaries>
 
-        <ResourceDictionary Source="Brushes.xaml"/>
-        <ResourceDictionary Source="Fonts.xaml"/>
-        <ResourceDictionary Source="Geometry.xaml"/>
-        <ResourceDictionary Source="Sizes.xaml"/>
-        <ResourceDictionary Source="Converters.xaml"/>
-
+        <ResourceDictionary Source="../Basic/Brushes.xaml"/>
+        <ResourceDictionary Source="../Basic/Converters.xaml"/>
+        <ResourceDictionary Source="../Basic/Fonts.xaml"/>
+        <ResourceDictionary Source="../Basic/Geometries.xaml"/>
+        <ResourceDictionary Source="../Basic/Sizes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

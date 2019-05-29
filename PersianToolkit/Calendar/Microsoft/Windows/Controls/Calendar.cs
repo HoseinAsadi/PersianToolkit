@@ -519,12 +519,19 @@ namespace Microsoft.Windows.Controls
         #region Language
         private static void OnLanguageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Calendar c = d as Calendar;
-
-            if (DependencyPropertyHelper.GetValueSource(d, Calendar.FirstDayOfWeekProperty).BaseValueSource == BaseValueSource.Default)
+            try
             {
-                c.CoerceValue(FirstDayOfWeekProperty);
-                c.UpdateCellItems();
+                Calendar c = d as Calendar;
+
+                if (DependencyPropertyHelper.GetValueSource(d, Calendar.FirstDayOfWeekProperty).BaseValueSource == BaseValueSource.Default)
+                {
+                    c.CoerceValue(FirstDayOfWeekProperty);
+                    c.UpdateCellItems();
+                }
+            }
+            catch 
+            {
+
             }
         }
         #endregion

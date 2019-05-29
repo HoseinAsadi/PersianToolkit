@@ -31,27 +31,31 @@ namespace Microsoft.Windows.Controls.Primitives
         private static bool CheckIsHoliday(DateTime date)
         {
             PersianCalendar pc = new PersianCalendar();
-
+            bool result = false;
             //Todo: every year must be checked
             // -1 is HijriAdjustment for fixing right day
-            IslamicDay hijriNow = IslamicDateUtils.GregorianToIslamicDay(date.Year, date.Month, date.Day - 1);
-            JObject oo = JObject.Parse(PersianToolkit.Properties.Resources.events);
-            string[] getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == pc.GetDayOfMonth(date).ToString() &&
-            x.SelectToken("month").ToString() == pc.GetMonth(date).ToString() && x.SelectToken("type").ToString() == "Iran")
-                .Select(m => (string)m.SelectToken("holiday")).ToArray();
-
-            string[] getHijriEvents = oo["Hijri Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == hijriNow.Day.ToString() &&
-            x.SelectToken("month").ToString() == hijriNow.Month.ToString() && x.SelectToken("type").ToString() == "Islamic Iran")
-                .Select(m => (string)m.SelectToken("holiday")).ToArray();
-
-            if (string.Join(", ", getPersianEvents).Contains("True") || string.Join(", ", getHijriEvents).Contains("True"))
+            try
             {
-                return true;
+                IslamicDay hijriNow = IslamicDateUtils.GregorianToIslamicDay(date.Year, date.Month, date.Day - 1);
+                JObject oo = JObject.Parse(PersianToolkit.Properties.Resources.events);
+                string[] getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == pc.GetDayOfMonth(date).ToString() &&
+                x.SelectToken("month").ToString() == pc.GetMonth(date).ToString() && x.SelectToken("type").ToString() == "Iran")
+                    .Select(m => (string)m.SelectToken("holiday")).ToArray();
+
+                string[] getHijriEvents = oo["Hijri Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == hijriNow.Day.ToString() &&
+                x.SelectToken("month").ToString() == hijriNow.Month.ToString() && x.SelectToken("type").ToString() == "Islamic Iran")
+                    .Select(m => (string)m.SelectToken("holiday")).ToArray();
+
+                if (string.Join(", ", getPersianEvents).Contains("True") || string.Join(", ", getHijriEvents).Contains("True"))
+                    result = true;
+                else
+                    result = false;
             }
-            else
+            catch
             {
-                return false;
+
             }
+            return result;
         }
         #region for Net 4.5 we can use async/await
         //private async static void DatePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

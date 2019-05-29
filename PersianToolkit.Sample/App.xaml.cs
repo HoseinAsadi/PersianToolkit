@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 
 namespace PersianToolkit.Sample
 {
@@ -10,7 +11,6 @@ namespace PersianToolkit.Sample
         protected override void OnStartup(StartupEventArgs e)
         {
             ConfigHelper.Instance.SetLanguage(ConfigHelper.Language.Persian);
-            UpdateSkin(SkinType.Default);
             base.OnStartup(e);
         }
 
@@ -19,6 +19,10 @@ namespace PersianToolkit.Sample
             ResourceDictionary skins0 = Resources.MergedDictionaries[0];
             skins0.MergedDictionaries.Clear();
             skins0.MergedDictionaries.Add(ResourceHelper.GetSkin(skin));
+            skins0.MergedDictionaries.Add(new ResourceDictionary
+            {
+                Source = new Uri("pack://application:,,,/PersianToolkit;component/Themes/Theme.xaml")
+            });
             Current.MainWindow?.OnApplyTemplate();
         }
     }
