@@ -6,7 +6,7 @@
 <div dir="rtl">ابتدا پرشین تولکیت را از ناگت نصب کنید</div>
 
 ```
-http://nuget.org
+Install-Package PersianToolkit
 ```
 
 <div dir="rtl">منابع برنامه را در فایل App.xaml بارگزاری کنید</div>
@@ -88,13 +88,13 @@ ConfigHelper.Instance.SetLanguage(ConfigHelper.Language.Persian);
 <div dir="rtl">بصورت پیشفرض رنگ های زیر موجود است و با نوشتن آنها میتوانید از رنگ های پیشفرض استفاده کنید</div>
 
 
-| PrimaryBrush |
-| :----------- |
-| SuccessBrush |
-| InfoBrush    |
-| DangerBrush  |
-| WarningBrush |
-| AccentBrush  |
+| PrimaryBrush     |
+| :--------------- |
+| **SuccessBrush** |
+| **InfoBrush**    |
+| **DangerBrush**  |
+| **WarningBrush** |
+| **AccentBrush**  |
 
 
 
