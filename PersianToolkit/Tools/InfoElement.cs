@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using PersianToolkit.Tools;
+using System.Windows;
 
 namespace PersianToolkit
 {
