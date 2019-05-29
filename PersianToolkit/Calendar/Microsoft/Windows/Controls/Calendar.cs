@@ -631,16 +631,24 @@ namespace Microsoft.Windows.Controls
                    .Select(m => (string)m.SelectToken("title")).ToArray();
                 string sep = string.Empty;
                 if (string.IsNullOrEmpty(string.Join(", ", getHijriEvents)))
+                {
                     sep = string.Empty;
+                }
                 else
+                {
                     sep = ", ";
+                }
 
-                var holy = string.Join(", ", getPersianEvents) + sep + string.Join(", ", getHijriEvents) + string.Join(", ", getGregorianEvents);
+                string holy = string.Join(", ", getPersianEvents) + sep + string.Join(", ", getHijriEvents) + string.Join(", ", getGregorianEvents);
                 if ((holy.Length - 1).Equals(","))
+                {
                     holy = holy.Remove(holy.Length - 1);
+                }
 
                 if (holy.StartsWith(","))
-                    holy = holy.Remove(0,1);
+                {
+                    holy = holy.Remove(0, 1);
+                }
 
                 HolidayTool.HolidayTool.holy.HolidyContent = holy;
 

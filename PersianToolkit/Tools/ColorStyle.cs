@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 
 namespace PersianToolkit
 {
     public class ColorStyle
     {
-      
+
         public static readonly DependencyProperty HolidayContentStyleProperty = DependencyProperty.RegisterAttached(
             "HolidayContentStyle", typeof(Style), typeof(ColorStyle), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(ResourceHolidayContentStyleToken.LabelDefault), FrameworkPropertyMetadataOptions.Inherits));
 
