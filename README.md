@@ -1,11 +1,16 @@
 # <div dir="rtl">PersianToolkit</div>
 <div dir="rtl">پرشین تولکیت شامل تقویم و انتخاب کننده تاریخ، بصورت شمسی بوده که توانایی نمایش روزهای تعطیل، و عنوان مناسبت های میلادی، قمری و شمسی را دارد. همچنین پرشین تولکیت شامل توابع قدرتمندی جهت تبدیل تاریخ بصورت شمسی، قمری، و میلادی است.</div>
+
 # <div dir="rtl">نحوه استفاده</div>
+
 <div dir="rtl">ابتدا پرشین تولکیت را از ناگت نصب کنید</div>
+
 ```
 http://nuget.org
 ```
+
 <div dir="rtl">منابع برنامه را در فایل App.xaml بارگزاری کنید</div>
+
 ```
 <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -24,6 +29,7 @@ http://nuget.org
 ``` 
 xmlns:pc="http://github.com/ghost1372/PersianToolkit"
 ```
+
 
 ```c#
     <pc:Calendar/>
@@ -81,6 +87,7 @@ ConfigHelper.Instance.SetLanguage(ConfigHelper.Language.Persian);
 
 <div dir="rtl">بصورت پیشفرض رنگ های زیر موجود است و با نوشتن آنها میتوانید از رنگ های پیشفرض استفاده کنید</div>
 
+
 | PrimaryBrush |
 | :----------- |
 | SuccessBrush |
@@ -92,6 +99,7 @@ ConfigHelper.Instance.SetLanguage(ConfigHelper.Language.Persian);
 
 
 <div dir="rtl">برای تغییر رنگ کادر عنوان مناسبت ها باید از پراپرتی HolidayContentStyle استفاده کنید دقت کنید که این پراپرتی ورودی از نوع Style برای کنترل Label دریافت می کند بصورت پیشفرض استایل های زیر موجود است</div>
+
 ```
 <pc:Calendar pc:ColorStyle.HolidayContentStyle="{StaticResource LabelPrimary}"/>
 ```
