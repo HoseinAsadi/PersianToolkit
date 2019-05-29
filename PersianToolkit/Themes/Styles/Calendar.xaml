@@ -231,7 +231,7 @@
                                         </Grid.RowDefinitions>
                                     </Grid>
                                     <Grid Width="240" Grid.ColumnSpan="3" Visibility="Collapsed" x:Name="PART_HolidayView" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2">
-                                        <Label HorizontalAlignment="Stretch" Style="{DynamicResource LabelDanger}">
+                                        <Label HorizontalAlignment="Stretch">
                                             <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Stretch" Name="lblHoliday" Text="{Binding Source={StaticResource HolidaySource}, Path=HolidyContent, UpdateSourceTrigger=PropertyChanged}"/>
                                         </Label>
                                     </Grid>

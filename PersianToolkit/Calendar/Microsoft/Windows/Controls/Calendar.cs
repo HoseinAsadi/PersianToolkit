@@ -625,8 +625,21 @@ namespace Microsoft.Windows.Controls
                 string[] getGregorianEvents = oo["Gregorian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == c.SelectedDate.Value.Day.ToString() &&
                x.SelectToken("month").ToString() == c.SelectedDate.ToString())
                    .Select(m => (string)m.SelectToken("title")).ToArray();
+                string sep = string.Empty;
+                if (string.IsNullOrEmpty(string.Join(", ", getHijriEvents)))
+                    sep = string.Empty;
+                else
+                    sep = ", ";
 
-                HolidayTool.HolidayTool.holy.HolidyContent = string.Join(Environment.NewLine, getPersianEvents) + string.Join(Environment.NewLine, getHijriEvents) + string.Join(Environment.NewLine, getGregorianEvents);
+                var holy = string.Join(", ", getPersianEvents) + sep + string.Join(", ", getHijriEvents) + string.Join(", ", getGregorianEvents);
+                if ((holy.Length - 1).Equals(","))
+                    holy = holy.Remove(holy.Length - 1);
+
+                if (holy.StartsWith(","))
+                    holy = holy.Remove(0,1);
+
+                HolidayTool.HolidayTool.holy.HolidyContent = holy;
+
             }
         }
 
