@@ -1,9 +1,7 @@
 # <div dir="rtl">PersianToolkit</div>
 <div dir="rtl">پرشین تولکیت شامل تقویم و انتخاب کننده تاریخ، بصورت شمسی بوده که توانایی نمایش روزهای تعطیل، و عنوان مناسبت های میلادی، قمری و شمسی را دارد. همچنین پرشین تولکیت شامل توابع قدرتمندی جهت تبدیل تاریخ بصورت شمسی، قمری، و میلادی است.</div>
 
-![](ScreenShot\1.png)
-![](ScreenShot\2.png)
-![](ScreenShot\3.png)
+![Screen1](ScreenShot/1.png) <br> ![Screen2](ScreenShot/2.png)<br>  ![Screen3](ScreenShot/3.png)
 
 # <div dir="rtl">نحوه استفاده</div>
 
