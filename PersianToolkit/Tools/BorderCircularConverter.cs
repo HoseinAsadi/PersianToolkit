@@ -3,9 +3,9 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace PersianToolkit
+namespace PersianToolkit.Tools
 {
-    public class BorderCircularConverter : IMultiValueConverter
+    internal class BorderCircularConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

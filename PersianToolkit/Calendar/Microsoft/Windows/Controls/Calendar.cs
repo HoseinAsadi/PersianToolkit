@@ -527,7 +527,7 @@ namespace Microsoft.Windows.Controls
                     c.UpdateCellItems();
                 }
             }
-            catch 
+            catch
             {
 
             }
@@ -630,25 +630,33 @@ namespace Microsoft.Windows.Controls
             }
         }
 
-        
+
 
 
         public string GetSelectedDateToGregorianDate()
         {
             GregorianCalendar pc = new GregorianCalendar();
             if (SelectedDate != null)
+            {
                 return pc.GetYear(SelectedDate.Value) + "/" + pc.GetMonth(SelectedDate.Value).ToString("00") + "/" + pc.GetDayOfMonth(SelectedDate.Value).ToString("00");
+            }
             else
+            {
                 return pc.GetYear(CurrentDate) + "/" + pc.GetMonth(CurrentDate).ToString("00") + "/" + pc.GetDayOfMonth(CurrentDate).ToString("00");
+            }
         }
 
         public IslamicDay GetSelectedDateToHijriDate(int HijriAdjust = -1)
         {
             IslamicDay hijriNow;
             if (SelectedDate != null)
+            {
                 hijriNow = IslamicDateUtils.GregorianToIslamicDay(SelectedDate.Value.Year, SelectedDate.Value.Month, SelectedDate.Value.Day + HijriAdjust);
+            }
             else
+            {
                 hijriNow = IslamicDateUtils.GregorianToIslamicDay(CurrentDate.Year, CurrentDate.Month, CurrentDate.Day + HijriAdjust);
+            }
 
             return hijriNow;
         }
@@ -656,9 +664,13 @@ namespace Microsoft.Windows.Controls
         {
             PersianCalendar pc = new PersianCalendar();
             if (SelectedDate != null)
+            {
                 return pc.GetYear(SelectedDate.Value) + "/" + pc.GetMonth(SelectedDate.Value).ToString("00") + "/" + pc.GetDayOfMonth(SelectedDate.Value).ToString("00");
+            }
             else
+            {
                 return pc.GetYear(CurrentDate) + "/" + pc.GetMonth(CurrentDate).ToString("00") + "/" + pc.GetDayOfMonth(CurrentDate).ToString("00");
+            }
         }
         public string GetSelectedDateHolidayContent()
         {

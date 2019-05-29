@@ -524,18 +524,26 @@ namespace Microsoft.Windows.Controls
         {
             GregorianCalendar pc = new GregorianCalendar();
             if (SelectedDate != null)
+            {
                 return pc.GetYear(SelectedDate.Value) + "/" + pc.GetMonth(SelectedDate.Value).ToString("00") + "/" + pc.GetDayOfMonth(SelectedDate.Value).ToString("00");
+            }
             else
+            {
                 return pc.GetYear(DisplayDate) + "/" + pc.GetMonth(DisplayDate).ToString("00") + "/" + pc.GetDayOfMonth(DisplayDate).ToString("00");
+            }
         }
 
         public IslamicDay GetSelectedDateToHijriDate(int HijriAdjust = -1)
         {
             IslamicDay hijriNow;
             if (SelectedDate != null)
+            {
                 hijriNow = IslamicDateUtils.GregorianToIslamicDay(SelectedDate.Value.Year, SelectedDate.Value.Month, SelectedDate.Value.Day + HijriAdjust);
+            }
             else
+            {
                 hijriNow = IslamicDateUtils.GregorianToIslamicDay(DisplayDate.Year, DisplayDate.Month, DisplayDate.Day + HijriAdjust);
+            }
 
             return hijriNow;
         }
@@ -543,9 +551,13 @@ namespace Microsoft.Windows.Controls
         {
             PersianCalendar pc = new PersianCalendar();
             if (SelectedDate != null)
+            {
                 return pc.GetYear(SelectedDate.Value) + "/" + pc.GetMonth(SelectedDate.Value).ToString("00") + "/" + pc.GetDayOfMonth(SelectedDate.Value).ToString("00");
+            }
             else
+            {
                 return pc.GetYear(DisplayDate) + "/" + pc.GetMonth(DisplayDate).ToString("00") + "/" + pc.GetDayOfMonth(DisplayDate).ToString("00");
+            }
         }
         #endregion SelectedDate
 

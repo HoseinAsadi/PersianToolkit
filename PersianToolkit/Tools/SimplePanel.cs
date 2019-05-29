@@ -2,15 +2,10 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace PersianToolkit
+namespace PersianToolkit.Tools
 {
-    /// <summary>
-    ///     用以代替Grid
-    /// </summary>
-    /// <remarks>
-    ///     当不需要Grid的行、列分隔等功能时建议用此轻量级类代替
-    /// </remarks>
-    public class SimplePanel : Panel
+
+    internal class SimplePanel : Panel
     {
         protected override Size MeasureOverride(Size availableSize)
         {

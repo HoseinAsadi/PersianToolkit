@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace PersianToolkit
+namespace PersianToolkit.Tools
 {
-    public class IconElement
+    internal class IconElement
     {
         public static readonly DependencyProperty GeometryProperty = DependencyProperty.RegisterAttached(
             "Geometry", typeof(Geometry), typeof(IconElement), new PropertyMetadata(default(Geometry)));

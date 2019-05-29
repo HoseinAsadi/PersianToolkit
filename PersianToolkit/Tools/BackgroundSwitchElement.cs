@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace PersianToolkit
+namespace PersianToolkit.Tools
 {
-    public class BackgroundSwitchElement
+    internal class BackgroundSwitchElement
     {
         public static readonly DependencyProperty MouseHoverBackgroundProperty = DependencyProperty.RegisterAttached(
             "MouseHoverBackground", typeof(Brush), typeof(BackgroundSwitchElement), new FrameworkPropertyMetadata(Brushes.Transparent, FrameworkPropertyMetadataOptions.Inherits));

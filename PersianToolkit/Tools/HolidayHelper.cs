@@ -47,9 +47,13 @@ namespace Microsoft.Windows.Controls.Primitives
                     .Select(m => (string)m.SelectToken("holiday")).ToArray();
 
                 if (string.Join(", ", getPersianEvents).Contains("True") || string.Join(", ", getHijriEvents).Contains("True"))
+                {
                     result = true;
+                }
                 else
+                {
                     result = false;
+                }
             }
             catch
             {

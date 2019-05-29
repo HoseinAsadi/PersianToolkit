@@ -2,9 +2,9 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace PersianToolkit
+namespace PersianToolkit.Tools
 {
-    public class BorderElement
+    internal class BorderElement
     {
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.RegisterAttached(
             "CornerRadius", typeof(CornerRadius), typeof(BorderElement), new FrameworkPropertyMetadata(default(CornerRadius), FrameworkPropertyMetadataOptions.Inherits));
