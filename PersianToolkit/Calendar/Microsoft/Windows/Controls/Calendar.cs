@@ -16,6 +16,7 @@ using System.Windows;
 using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using CalendarAutomationPeer = Microsoft.Windows.Automation.Peers.CalendarAutomationPeer;
 
 namespace Microsoft.Windows.Controls
@@ -114,6 +115,9 @@ namespace Microsoft.Windows.Controls
             {
                 SetFlowDirection(this, FlowDirection.LeftToRight);
             }
+            ColorStyle.SetSelectedDateStyle(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.PrimaryBrush));
+            ColorStyle.SetTodayDateStyle(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.DangerBrush));
+            ColorStyle.SetHolidayDayStyle(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.WarningBrush));
         }
         #region Public Properties
 

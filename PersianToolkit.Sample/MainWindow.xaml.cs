@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Media;
 
 namespace PersianToolkit.Sample
 {
@@ -11,12 +12,15 @@ namespace PersianToolkit.Sample
         public MainWindow()
         {
             InitializeComponent();
+
+            ColorStyle.SetHolidayDayStyle(pc, ResourceHelper.GetResource<Brush>(ResourceBrushToken.SuccessBrush));
+
         }
 
         private void BtnDef_Click(object sender, RoutedEventArgs e)
         {
             ((App)Application.Current).UpdateSkin(SkinType.Default);
-
+            ColorStyle.SetHolidayContentStyle(pc, ResourceHelper.GetResource<Style>(ResourceHolidayContentStyleToken.LabelPrimary));
         }
 
         private void BtnDark_Click(object sender, RoutedEventArgs e)

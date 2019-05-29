@@ -115,12 +115,14 @@
     <Compile Include="Tools\BorderElement.cs" />
     <Compile Include="Converter\String2VisibilityConverter.cs" />
     <Compile Include="Converter\String2VisibilityReConverter.cs" />
+    <Compile Include="Tools\ColorStyle.cs" />
     <Compile Include="Tools\ConfigHelper.cs" />
     <Compile Include="Tools\Holiday.cs" />
     <Compile Include="Tools\HolidayHelper.cs" />
     <Compile Include="Tools\IconElement.cs" />
     <Compile Include="Tools\InfoElement.cs" />
     <Compile Include="Tools\ResourceHelper.cs" />
+    <Compile Include="Tools\ResourceToken.cs" />
     <Compile Include="Tools\SimplePanel.cs" />
     <Compile Include="Tools\SkinType.cs" />
     <Compile Include="Tools\TitleAlignment.cs" />

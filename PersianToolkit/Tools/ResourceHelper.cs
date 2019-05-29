@@ -18,5 +18,15 @@ namespace PersianToolkit
                 Source = new Uri($"pack://application:,,,/PersianToolkit;component/Themes/Skin{skin.ToString()}.xaml")
             };
         }
+
+        public static T GetResource<T>(string key)
+        {
+            if (Application.Current.TryFindResource(key) is T resource)
+            {
+                return resource;
+            }
+
+            return default(T);
+        }
     }
 }

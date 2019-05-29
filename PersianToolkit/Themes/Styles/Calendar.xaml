@@ -8,7 +8,9 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Basic/Geometries.xaml"/>
+        <ResourceDictionary Source="../Basic/Brushes.xaml"/>
         <ResourceDictionary Source="Button.xaml"/>
+        <ResourceDictionary Source="Label.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <Holiday:HolidayTool x:Key="HolidaySource"/>
     
@@ -130,9 +132,9 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Rectangle RadiusX="16" RadiusY="16" x:Name="TodayBackground" Fill="{DynamicResource DangerBrush}" Opacity="0"/>
-                        <Rectangle x:Name="SelectedBackground" Fill="{DynamicResource PrimaryBrush}" Opacity="0" RadiusY="16" RadiusX="16"/>
-                        <Rectangle x:Name="HolidayBackground" Fill="{DynamicResource WarningBrush}" Opacity="0" RadiusY="16" RadiusX="16"/>
+                        <Rectangle RadiusX="16" RadiusY="16" x:Name="TodayBackground" Fill="{Binding Path=(controls:ColorStyle.TodayDateStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource DangerBrush}}" Opacity="0"/>
+                        <Rectangle x:Name="SelectedBackground" Fill="{Binding Path=(controls:ColorStyle.SelectedDateStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource PrimaryBrush}}" Opacity="0" RadiusY="16" RadiusX="16"/>
+                        <Rectangle x:Name="HolidayBackground" Fill="{Binding Path=(controls:ColorStyle.HolidayDayStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource WarningBrush}}" Opacity="0" RadiusY="16" RadiusX="16"/>
                         <ContentPresenter x:Name="NormalText" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <TextElement.Foreground>
                                 <SolidColorBrush Color="{DynamicResource PrimaryTextColor}"/>
@@ -231,7 +233,7 @@
                                         </Grid.RowDefinitions>
                                     </Grid>
                                     <Grid Width="240" Grid.ColumnSpan="3" Visibility="Collapsed" x:Name="PART_HolidayView" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2">
-                                        <Label HorizontalAlignment="Stretch">
+                                        <Label Style="{Binding Path=(controls:ColorStyle.HolidayContentStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource LabelDefault}}" HorizontalAlignment="Stretch">
                                             <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Stretch" Name="lblHoliday" Text="{Binding Source={StaticResource HolidaySource}, Path=HolidyContent, UpdateSourceTrigger=PropertyChanged}"/>
                                         </Label>
                                     </Grid>
