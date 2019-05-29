@@ -31,5 +31,6 @@ namespace PersianToolkit
         public const string LabelInfo = nameof(LabelInfo);
         public const string LabelWarning = nameof(LabelWarning);
         public const string LabelDanger = nameof(LabelDanger);
+        public const string LabelSuccess = nameof(LabelSuccess);
     }
 }
