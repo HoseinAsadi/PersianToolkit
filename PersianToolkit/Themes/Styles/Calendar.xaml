@@ -132,9 +132,9 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Rectangle RadiusX="16" RadiusY="16" x:Name="TodayBackground" Fill="{Binding Path=(controls:ColorStyle.TodayDateStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource DangerBrush}}" Opacity="0"/>
-                        <Rectangle x:Name="SelectedBackground" Fill="{Binding Path=(controls:ColorStyle.SelectedDateStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource PrimaryBrush}}" Opacity="0" RadiusY="16" RadiusX="16"/>
-                        <Rectangle x:Name="HolidayBackground" Fill="{Binding Path=(controls:ColorStyle.HolidayDayStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource WarningBrush}}" Opacity="0" RadiusY="16" RadiusX="16"/>
+                        <Rectangle RadiusX="16" RadiusY="16" x:Name="TodayBackground" Fill="{Binding Path=(controls:ColorStyle.TodayDateBrush),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource DangerBrush}}" Opacity="0"/>
+                        <Rectangle x:Name="SelectedBackground" Fill="{Binding Path=(controls:ColorStyle.SelectedDateBrush),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource PrimaryBrush}}" Opacity="0" RadiusY="16" RadiusX="16"/>
+                        <Rectangle x:Name="HolidayBackground" Fill="{Binding Path=(controls:ColorStyle.HolidayDayBrush),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource WarningBrush}}" Opacity="0" RadiusY="16" RadiusX="16"/>
                         <ContentPresenter x:Name="NormalText" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <TextElement.Foreground>
                                 <SolidColorBrush Color="{DynamicResource PrimaryTextColor}"/>

@@ -23,43 +23,43 @@ namespace PersianToolkit
             return (Style)element.GetValue(HolidayContentStyleProperty);
         }
 
-        public static readonly DependencyProperty SelectedDateStyleProperty = DependencyProperty.RegisterAttached(
-            "SelectedDateStyle", typeof(Brush), typeof(ColorStyle), new FrameworkPropertyMetadata(default(Brushes), FrameworkPropertyMetadataOptions.Inherits));
+        public static readonly DependencyProperty SelectedDateBrushProperty = DependencyProperty.RegisterAttached(
+            "SelectedDateBrush", typeof(Brush), typeof(ColorStyle), new FrameworkPropertyMetadata(default(Brushes), FrameworkPropertyMetadataOptions.Inherits));
 
-        public static void SetSelectedDateStyle(DependencyObject element, Brush value)
+        public static void SetSelectedDateBrush(DependencyObject element, Brush value)
         {
-            element.SetValue(SelectedDateStyleProperty, value);
+            element.SetValue(SelectedDateBrushProperty, value);
         }
 
-        public static Brush GetSelectedDateStyle(DependencyObject element)
+        public static Brush GetSelectedDateBrush(DependencyObject element)
         {
-            return (Brush)element.GetValue(SelectedDateStyleProperty);
+            return (Brush)element.GetValue(SelectedDateBrushProperty);
         }
 
-        public static readonly DependencyProperty TodayDateStyleProperty = DependencyProperty.RegisterAttached(
-            "TodayDateStyle", typeof(Brush), typeof(ColorStyle), new FrameworkPropertyMetadata(default(Brushes), FrameworkPropertyMetadataOptions.Inherits));
+        public static readonly DependencyProperty TodayDateBrushProperty = DependencyProperty.RegisterAttached(
+            "TodayDateBrush", typeof(Brush), typeof(ColorStyle), new FrameworkPropertyMetadata(default(Brushes), FrameworkPropertyMetadataOptions.Inherits));
 
-        public static void SetTodayDateStyle(DependencyObject element, Brush value)
+        public static void SetTodayDateBrush(DependencyObject element, Brush value)
         {
-            element.SetValue(TodayDateStyleProperty, value);
+            element.SetValue(TodayDateBrushProperty, value);
         }
 
-        public static Brush GetTodayDateStyle(DependencyObject element)
+        public static Brush GetTodayDateBrush(DependencyObject element)
         {
-            return (Brush)element.GetValue(TodayDateStyleProperty);
+            return (Brush)element.GetValue(TodayDateBrushProperty);
         }
 
-        public static readonly DependencyProperty HolidayDayStyleProperty = DependencyProperty.RegisterAttached(
-            "HolidayDayStyle", typeof(Brush), typeof(ColorStyle), new FrameworkPropertyMetadata(default(Brushes), FrameworkPropertyMetadataOptions.Inherits));
+        public static readonly DependencyProperty HolidayDayBrushProperty = DependencyProperty.RegisterAttached(
+            "HolidayDayBrush", typeof(Brush), typeof(ColorStyle), new FrameworkPropertyMetadata(default(Brushes), FrameworkPropertyMetadataOptions.Inherits));
 
-        public static void SetHolidayDayStyle(DependencyObject element, Brush value)
+        public static void SetHolidayDayBrush(DependencyObject element, Brush value)
         {
-            element.SetValue(HolidayDayStyleProperty, value);
+            element.SetValue(HolidayDayBrushProperty, value);
         }
 
-        public static Brush GetHolidayDayStyle(DependencyObject element)
+        public static Brush GetHolidayDayBrush(DependencyObject element)
         {
-            return (Brush)element.GetValue(HolidayDayStyleProperty);
+            return (Brush)element.GetValue(HolidayDayBrushProperty);
         }
     }
 }

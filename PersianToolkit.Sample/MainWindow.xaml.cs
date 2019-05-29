@@ -13,7 +13,7 @@ namespace PersianToolkit.Sample
         {
             InitializeComponent();
 
-            ColorStyle.SetHolidayDayStyle(pc, ResourceHelper.GetResource<Brush>(ResourceBrushToken.SuccessBrush));
+            ColorStyle.SetHolidayDayBrush(pc, ResourceHelper.GetResource<Brush>(ResourceBrushToken.SuccessBrush));
 
         }
 

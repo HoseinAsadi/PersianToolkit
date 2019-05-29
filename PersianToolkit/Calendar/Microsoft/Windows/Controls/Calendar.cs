@@ -115,9 +115,9 @@ namespace Microsoft.Windows.Controls
             {
                 SetFlowDirection(this, FlowDirection.LeftToRight);
             }
-            ColorStyle.SetSelectedDateStyle(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.PrimaryBrush));
-            ColorStyle.SetTodayDateStyle(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.DangerBrush));
-            ColorStyle.SetHolidayDayStyle(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.WarningBrush));
+            ColorStyle.SetSelectedDateBrush(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.PrimaryBrush));
+            ColorStyle.SetTodayDateBrush(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.DangerBrush));
+            ColorStyle.SetHolidayDayBrush(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.WarningBrush));
         }
         #region Public Properties
 
