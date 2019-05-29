@@ -621,15 +621,7 @@ namespace Microsoft.Windows.Controls
                x.SelectToken("month").ToString() == c.SelectedDate.ToString())
                    .Select(m => (string)m.SelectToken("title")).ToArray();
 
-                var hijri = string.Join(",", getHijriEvents);
-                if (!string.IsNullOrEmpty(hijri))
-                    hijri = ", " + hijri;
-
-                var greog = string.Join(",", getGregorianEvents);
-                if (!string.IsNullOrEmpty(greog))
-                    greog = ", " + greog;
-
-                holy.HolidyContent = string.Join(", ", getPersianEvents) + hijri + greog;
+                holy.HolidyContent = string.Join(Environment.NewLine, getPersianEvents) + string.Join(Environment.NewLine, getHijriEvents) + string.Join(Environment.NewLine, getGregorianEvents);
 
             }
         }

@@ -1,40 +1,4 @@
 {
-  "#source": [
-    "فهرست مناسبت‌های ایران و افغانستان که در پروژهٔ تقویم فارسی اندروید و توسط توسعه‌دهندگان آن و به کمک منابع زیر",
-    "تهیه نگه‌داری می‌شود. با توجه به زحمتی که برای گردآوردی آن کشیده شده است",
-    "پیشنهاد می‌شود آن را فقط در پروژه‌های متن‌باز و یا با ارجاع مناسب به منبع استفادهٔ مجدد کنید",
-    "و اگر اشکالی در یکی از مناسبت‌ها، عنوان یا تاریخ یا عدم وجود مناسبتی دیدید سریعاً پروژه را مطلع کنید، با تشکر",
-
-    "http://calendar.ut.ac.ir/Fa/Tyear/Data%5Choliday-1394.pdf",
-    "http://pcci.ir/file/2015/11/1395.zip",
-    "https://calendar.ut.ac.ir/Fa/News/Data/Doc/calendar%201396-full.pdf",
-    "https://calendar.ut.ac.ir/Fa/News/Data/Doc/Calendar%201397-Full.pdf",
-    "https://calendar.ut.ac.ir/Fa/News/Data/Doc/Calendar%201398-Full.pdf",
-    "https://www.tasnimnews.com/fa/news/1395/11/10/1310977/",
-
-    "https://raw.githubusercontent.com/ilius/starcal/master/plugins/iran-jalali-data.txt",
-    "مطابق با استخراج و تنظیم شورای مرکز تقویم مؤسسهٔ ژئوفیزیک دانشگاه تهران (مناسبت‌ها از شورای فرهنگ عمومی)",
-    "گردآوری، فرمت‌بندی و به روزآوری: سعید رسولی <saeed.gnu@gmail.com>، مولا پهنادایان <mola.mp@gmail.com>",
-
-    "https://raw.githubusercontent.com/ilius/starcal/master/plugins/iran-jalali-2-data.txt",
-    "شورای مرکز تقویم مؤسسهٔ ژئوفیزیک دانشگاه تهران، و شورای فرهنگ عمومی",
-    "سعید رسولی <saeed.gnu@gmail.com> مولا پهنادایان <mola.mp@gmail.com>",
-
-    "https://raw.githubusercontent.com/ilius/starcal/master/plugins/iran-ancient-data.txt",
-    "جشن‌های باستانی ایران",
-    "رضا مرادی غیاث‌آبادی (www.ghiasabadi.com) سعید رسولی <saeed.gnu@gmail.com>",
-
-    "https://raw.githubusercontent.com/ilius/starcal/master/plugins/iran-gregorian-data.txt",
-    "https://raw.githubusercontent.com/ilius/starcal/master/plugins/iran-gregorian-2-data.txt",
-    "https://raw.githubusercontent.com/ilius/starcal/master/plugins/iran-hijri-data.txt",
-    "https://raw.githubusercontent.com/ilius/starcal/master/plugins/iran-hijri-2-data.txt",
-    "شورای مرکز تقویم مؤسسهٔ ژئوفیزیک دانشگاه تهران، و شورای فرهنگ عمومی",
-    "سعید رسولی <saeed.gnu@gmail.com> مولا پهنادایان <mola.mp@gmail.com>",
-
-    "Afghanistan events from Afghani clones, Afghanistan Calendar Date Converter and https://en.wikipedia.org/wiki/Public_holidays_in_Afghanistan",
-    "http://www.un.org/en/sections/observances/international-days/"
-  ],
-
   "Persian Calendar": [
 
     { "holiday": true, "month": 1, "day": 1, "type": "Iran",
@@ -897,9 +861,6 @@
 
     { "holiday": false, "month": 10, "day": 5, "type": "Ancient Iran",
       "title": "روز درگذشت زرتشت" },
-
-    { "holiday": false, "year": 1397, "month": 3, "day": 18, "type": "Islamic Iran",
-      "title": "روز جهانی قدس (آخرین جمعهٔ ماه رمضان)" },
 
     { "holiday": false, "year": 1398, "month": 3, "day": 10, "type": "Islamic Iran",
       "title": "روز جهانی قدس (آخرین جمعهٔ ماه رمضان)" }
