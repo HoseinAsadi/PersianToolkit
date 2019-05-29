@@ -15,7 +15,7 @@
             <Button x:Name="btnVio" Content="Violet Theme" Click="BtnVio_Click"/>
             <CheckBox x:Name="ShowHoliday" Content="Is Holiday Show?"/>
         </StackPanel>
-        <pc:Calendar  FontFamily="IranSans" pc:Holiday.ShowHoliday="{Binding ElementName=ShowHoliday, Path=IsChecked}"/>
+        <pc:Calendar Name="pc" FontFamily="IranSans" pc:Holiday.ShowHoliday="{Binding ElementName=ShowHoliday, Path=IsChecked}"/>
         <pc:DatePicker/>
     </StackPanel>
 </Window>

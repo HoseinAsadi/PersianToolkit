@@ -25,7 +25,7 @@ namespace Microsoft.Windows.Controls
     /// </summary>
     [TemplatePart(Name = Calendar.ElementRoot, Type = typeof(Panel))]
     [TemplatePart(Name = Calendar.ElementMonth, Type = typeof(CalendarItem))]
-    public class Calendar : Control, INotifyPropertyChanged
+    public class Calendar : Control
     {
         #region Constants
 
@@ -48,7 +48,6 @@ namespace Microsoft.Windows.Controls
         private CalendarItem _monthControl;
         private readonly CalendarBlackoutDatesCollection _blackoutDates;
         private readonly SelectedDatesCollection _selectedDates;
-        internal static Calendar holy;
 
         #endregion Data
 
@@ -115,7 +114,6 @@ namespace Microsoft.Windows.Controls
             {
                 SetFlowDirection(this, FlowDirection.LeftToRight);
             }
-            holy = this;
         }
         #region Public Properties
 
@@ -628,32 +626,12 @@ namespace Microsoft.Windows.Controls
                x.SelectToken("month").ToString() == c.SelectedDate.ToString())
                    .Select(m => (string)m.SelectToken("title")).ToArray();
 
-                holy.HolidyContent = string.Join(Environment.NewLine, getPersianEvents) + string.Join(Environment.NewLine, getHijriEvents) + string.Join(Environment.NewLine, getGregorianEvents);
-
+                HolidayTool.HolidayTool.holy.HolidyContent = string.Join(Environment.NewLine, getPersianEvents) + string.Join(Environment.NewLine, getHijriEvents) + string.Join(Environment.NewLine, getGregorianEvents);
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        
 
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private string _HolidyContent;
-
-        public string HolidyContent
-        {
-            get => _HolidyContent;
-            set
-            {
-                if (value != _HolidyContent)
-                {
-                    _HolidyContent = value;
-                    OnPropertyChanged("HolidyContent");
-                }
-            }
-        }
 
         public string GetSelectedDateToGregorianDate()
         {
@@ -684,7 +662,7 @@ namespace Microsoft.Windows.Controls
         }
         public string GetSelectedDateHolidayContent()
         {
-            return holy.HolidyContent;
+            return HolidayTool.HolidayTool.holy.HolidyContent;
         }
         public string SelectedDateToString()
         {
@@ -1772,5 +1750,37 @@ namespace Microsoft.Windows.Controls
         }
 
         #endregion Private Methods
+    }
+}
+namespace HolidayTool
+{
+    public class HolidayTool : INotifyPropertyChanged
+    {
+        internal static HolidayTool holy;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public HolidayTool()
+        {
+            holy = this;
+        }
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private string _HolidyContent;
+
+        public string HolidyContent
+        {
+            get => _HolidyContent;
+            set
+            {
+                if (value != _HolidyContent)
+                {
+                    _HolidyContent = value;
+                    OnPropertyChanged("HolidyContent");
+                }
+            }
+        }
     }
 }
