@@ -5,19 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersianToolkit.Sample"
         mc:Ignorable="d"
-        
+        ResizeMode="CanResizeWithGrip"
         xmlns:pc="http://github.com/ghost1372/PersianToolkit"
-        Title="MainWindow" Height="450" Width="800">
-    <StackPanel>
-        <StackPanel Margin="10" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button x:Name="btnDef" Content="Default Theme" Click="BtnDef_Click"/>
-            <Button x:Name="btnDark" Content="Dark Theme" Click="BtnDark_Click"/>
-            <Button x:Name="btnVio" Content="Violet Theme" Click="BtnVio_Click"/>
-            <CheckBox x:Name="ShowHoliday" IsChecked="True" Content="Is Holiday Show?"/>
-        </StackPanel>
-        <pc:Calendar Name="pc" FontFamily="IranSans" 
-                   
+        Title="MainWindow" Height="500" Width="800">
+        <ScrollViewer>
+        <StackPanel>
+            <StackPanel Margin="10" HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button x:Name="btnDef" Content="Default Theme" Click="BtnDef_Click"/>
+                <Button x:Name="btnDark" Content="Dark Theme" Click="BtnDark_Click"/>
+                <Button x:Name="btnVio" Content="Violet Theme" Click="BtnVio_Click"/>
+                <CheckBox x:Name="ShowHoliday" IsChecked="True" Content="Is Holiday Show?"/>
+            </StackPanel>
+            <pc:DatePicker Margin="10"/>
+            <StackPanel Orientation="Horizontal">
+                <pc:Calendar Margin="10" Name="pc" FontFamily="IranSans" 
+                   HorizontalAlignment="Left"
                      pc:Holiday.ShowHoliday="{Binding ElementName=ShowHoliday, Path=IsChecked}"/>
-        <pc:DatePicker/>
-    </StackPanel>
+                <pc:CalendarWithClock Margin="10"/>
+            </StackPanel>
+           
+        </StackPanel>
+    </ScrollViewer>
 </Window>

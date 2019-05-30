@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyAttrs.cs" />
+    <Compile Include="Time\CalendarWithClock.cs" />
     <Compile Include="Calendar\Microsoft\Windows\Automation\Peers\CalendarAutomationPeer.cs" />
     <Compile Include="Calendar\Microsoft\Windows\Automation\Peers\CalendarButtonAutomationPeer.cs" />
     <Compile Include="Calendar\Microsoft\Windows\Automation\Peers\CalendarDayButtonAutomationPeer.cs" />
@@ -107,6 +108,12 @@
     </Compile>
     <Compile Include="Resources\SR.cs" />
     <Compile Include="Resources\SRID.cs" />
+    <Compile Include="Time\Clock\ArithmeticHelper.cs" />
+    <Compile Include="Time\Clock\CirclePanel.cs" />
+    <Compile Include="Time\Clock\Clock.cs" />
+    <Compile Include="Time\Clock\ClockBase.cs" />
+    <Compile Include="Time\Clock\ClockRadioButton.cs" />
+    <Compile Include="Time\Clock\FunctionEventArgs.cs" />
     <Compile Include="Tools\BackgroundSwitchElement.cs" />
     <Compile Include="Tools\BorderCircularConverter.cs" />
     <Compile Include="Tools\BorderElement.cs" />
@@ -190,6 +197,14 @@
     <Page Include="Themes\Basic\Converters.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Styles\CalendarWithClock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Styles\Clock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Styles\DatePicker.xaml">
       <Generator>MSBuild:Compile</Generator>
