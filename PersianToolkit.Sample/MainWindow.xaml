@@ -24,11 +24,9 @@
             </StackPanel>
             <StackPanel Margin="10" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Margin="5,0" x:Name="btnTitleColor" Content="تغییر رنگ عنوان" Click="BtnTitleColor_Click"/>
-                <!--<Button Margin="5,0" x:Name="btnGetShamsi" Content="تاریخ شمسی" Click="BtnGetShamsi_Click"/>
-                <Button Margin="5,0" x:Name="btnGetGregorian" Content="تاریخ میلادی" Click="BtnGetGregorian_Click"/>
-                <Button Margin="5,0" x:Name="btnHolidayContent" Content="مناسبت جاری" Click="BtnHolidayContent_Click"/>-->
             </StackPanel>
-            <pc:DatePicker pc:InfoElement.Placeholder="تاریخ را انتخاب کنید" Margin="10"/>
+            <pc:DatePicker 
+                           pc:InfoElement.Necessary="True" Style="{StaticResource DatePickerExtend}" pc:TitleElement.TitleAlignment="Top" pc:InfoElement.Title="لطفا تاریخ را انتخاب کنید"  pc:InfoElement.Placeholder="تاریخ را انتخاب کنید" Margin="10"/>
             <StackPanel Orientation="Horizontal">
                 <pc:Calendar Margin="10" Name="pc" FontFamily="IranSans" 
                    HorizontalAlignment="Left"
