@@ -242,6 +242,7 @@
                         </Border>
                     </Tools:SimplePanel>
                     <ControlTemplate.Triggers>
+                        
                         <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource  AncestorType=local:Calendar}}" Value="Year">
                             <Setter Property="Visibility" TargetName="PART_MonthView" Value="Hidden"/>
                             <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
@@ -254,6 +255,9 @@
                         <Trigger Property="controls:Holiday.ShowHoliday" Value="True">
                             <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Visible" />
                         </Trigger>
+                        <DataTrigger Binding="{Binding ElementName=PART_YearView, Path=Visibility}" Value="Visible">
+                            <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
                         <DataTrigger Binding="{Binding ElementName=lblHoliday, Path=Text}" Value="">
                             <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
