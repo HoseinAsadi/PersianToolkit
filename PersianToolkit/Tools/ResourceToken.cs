@@ -1,5 +1,8 @@
 ﻿namespace PersianToolkit
 {
+    /// <summary>
+    /// براش های پیشفرض
+    /// </summary>
     public class ResourceBrushToken
     {
         public const string PrimaryBrush = nameof(PrimaryBrush);
@@ -19,6 +22,9 @@
         public const string ThirdlyTextBrush = nameof(ThirdlyTextBrush);
 
     }
+    /// <summary>
+    /// استایل های پیشفرض کادر مناسبت ها
+    /// </summary>
     public class ResourceHolidayContentStyleToken
     {
         public const string LabelDefault = nameof(LabelDefault);

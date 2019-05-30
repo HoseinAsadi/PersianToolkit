@@ -5,6 +5,9 @@ using System.Windows.Markup;
 
 namespace PersianToolkit
 {
+    /// <summary>
+    /// کلاسی برای تغییر نوع تقویم
+    /// </summary>
     public class ConfigHelper : INotifyPropertyChanged
     {
         private ConfigHelper()

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using PersianToolkit.Tools;
+using System.Windows;
 using System.Windows.Media;
 
 namespace PersianToolkit.Sample
@@ -11,7 +12,6 @@ namespace PersianToolkit.Sample
         public MainWindow()
         {
             InitializeComponent();
-
             ColorStyle.SetHolidayDayBrush(pc, ResourceHelper.GetResource<Brush>(ResourceBrushToken.SuccessBrush));
         }
 
@@ -59,6 +59,12 @@ namespace PersianToolkit.Sample
         private void BtnHolidayContent_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(pc.GetSelectedDateHolidayContent());
+        }
+
+        private void BtnTitleColor_Click(object sender, RoutedEventArgs e)
+        {
+            TitleElement.SetBackground(pc, Brushes.Red);
+            
         }
     }
 }

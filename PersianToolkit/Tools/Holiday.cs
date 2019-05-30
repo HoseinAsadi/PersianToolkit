@@ -2,6 +2,9 @@
 
 namespace PersianToolkit
 {
+    /// <summary>
+    /// کلاسی برای نمایش مناسبت ها
+    /// </summary>
     public class Holiday
     {
         public static readonly DependencyProperty ShowHolidayProperty = DependencyProperty.RegisterAttached(

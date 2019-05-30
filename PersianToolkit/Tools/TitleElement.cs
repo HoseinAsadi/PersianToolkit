@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace PersianToolkit.Tools
+namespace PersianToolkit
 {
     public class TitleElement
     {
@@ -57,9 +57,6 @@ namespace PersianToolkit.Tools
             return (Brush)element.GetValue(BorderBrushProperty);
         }
 
-        /// <summary>
-        ///     标题对齐方式
-        /// </summary>
         public static readonly DependencyProperty TitleAlignmentProperty = DependencyProperty.RegisterAttached(
             "TitleAlignment", typeof(TitleAlignment), typeof(TitleElement), new FrameworkPropertyMetadata(TitleAlignment.Top, FrameworkPropertyMetadataOptions.Inherits));
 
@@ -73,9 +70,6 @@ namespace PersianToolkit.Tools
             return (TitleAlignment)element.GetValue(TitleAlignmentProperty);
         }
 
-        /// <summary>
-        ///     标题宽度
-        /// </summary>
         public static readonly DependencyProperty TitleWidthProperty = DependencyProperty.RegisterAttached(
             "TitleWidth", typeof(GridLength), typeof(TitleElement), new FrameworkPropertyMetadata(new GridLength(120.0), FrameworkPropertyMetadataOptions.Inherits));
 

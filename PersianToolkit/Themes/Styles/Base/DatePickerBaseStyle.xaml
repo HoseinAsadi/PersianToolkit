@@ -17,10 +17,10 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="primitives:DatePickerTextBox">
-                        <Tools:SimplePanel>
+                        <primitives:SimplePanel>
                         <TextBlock VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" Text="{Binding Path=(controls:InfoElement.Placeholder),RelativeSource={RelativeSource AncestorType=local:DatePicker}}" TextElement.Foreground="{DynamicResource ThirdlyTextBrush}" Visibility="{TemplateBinding Text,Converter={StaticResource String2VisibilityReConverter}}"/>
                             <ScrollViewer Margin="-2,0" Padding="{TemplateBinding Padding}" x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        </Tools:SimplePanel>
+                        </primitives:SimplePanel>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

@@ -5,9 +5,6 @@ namespace PersianToolkit
 {
     public class InfoElement : TitleElement
     {
-        /// <summary>
-        ///     占位符
-        /// </summary>
         public static readonly DependencyProperty PlaceholderProperty = DependencyProperty.RegisterAttached(
             "Placeholder", typeof(string), typeof(InfoElement), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
 
@@ -21,9 +18,6 @@ namespace PersianToolkit
             return (string)element.GetValue(PlaceholderProperty);
         }
 
-        /// <summary>
-        ///     是否必填
-        /// </summary>
         public static readonly DependencyProperty NecessaryProperty = DependencyProperty.RegisterAttached(
             "Necessary", typeof(bool), typeof(InfoElement), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.Inherits));
 
@@ -37,9 +31,6 @@ namespace PersianToolkit
             return (bool)element.GetValue(NecessaryProperty);
         }
 
-        /// <summary>
-        ///     标记
-        /// </summary>
         public static readonly DependencyProperty SymbolProperty = DependencyProperty.RegisterAttached(
             "Symbol", typeof(string), typeof(InfoElement), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
 
@@ -53,9 +44,6 @@ namespace PersianToolkit
             return (string)element.GetValue(SymbolProperty);
         }
 
-        /// <summary>
-        ///     内容高度
-        /// </summary>
         public static readonly DependencyProperty ContentHeightProperty = DependencyProperty.RegisterAttached(
             "ContentHeight", typeof(double), typeof(InfoElement), new FrameworkPropertyMetadata(30.0, FrameworkPropertyMetadataOptions.Inherits));
 

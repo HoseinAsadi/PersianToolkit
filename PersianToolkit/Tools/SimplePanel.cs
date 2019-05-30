@@ -2,9 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace PersianToolkit.Tools
+namespace Microsoft.Windows.Controls.Primitives
 {
-
     internal class SimplePanel : Panel
     {
         protected override Size MeasureOverride(Size availableSize)

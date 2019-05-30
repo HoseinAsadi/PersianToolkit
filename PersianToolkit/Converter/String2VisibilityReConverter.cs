@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace PersianToolkit
 {
-    public class String2VisibilityReConverter : IValueConverter
+    internal class String2VisibilityReConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

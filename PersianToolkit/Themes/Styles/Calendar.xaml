@@ -26,7 +26,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="primitives:CalendarButton">
-                    <Tools:SimplePanel>
+                    <primitives:SimplePanel>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="SelectionStates">
                                 <VisualStateGroup.Transitions>
@@ -60,7 +60,7 @@
                             </TextElement.Foreground>
                         </ContentPresenter>
                         <Rectangle x:Name="CalendarButtonFocusVisual" IsHitTestVisible="false" RadiusY="16" RadiusX="16" Stroke="{DynamicResource PrimaryBrush}" Visibility="Collapsed"/>
-                    </Tools:SimplePanel>
+                    </primitives:SimplePanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter Property="Visibility" TargetName="CalendarButtonFocusVisual" Value="Visible"/>
@@ -83,7 +83,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="primitives:CalendarDayButton">
-                    <Tools:SimplePanel>
+                    <primitives:SimplePanel>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualStateGroup.Transitions>
@@ -140,7 +140,7 @@
                                 <SolidColorBrush Color="{DynamicResource PrimaryTextColor}"/>
                             </TextElement.Foreground>
                         </ContentPresenter>
-                    </Tools:SimplePanel>
+                    </primitives:SimplePanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="primitives:HolidayHelper.IsHoliday" Value="True">
                             <Setter Property="Opacity" Value="1" TargetName="HolidayBackground"/>
@@ -171,7 +171,7 @@
                             <TextBlock Foreground="#FF333333" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </ControlTemplate.Resources>
-                    <Tools:SimplePanel x:Name="PART_Root">
+                    <primitives:SimplePanel x:Name="PART_Root">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal"/>
@@ -195,7 +195,7 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <Border Background="{Binding Path=(Tools:TitleElement.Background),RelativeSource={RelativeSource TemplatedParent}}" Grid.ColumnSpan="3"/>
+                                    <Border Background="{Binding Path=(controls:TitleElement.Background),RelativeSource={RelativeSource TemplatedParent}}" Grid.ColumnSpan="3"/>
                                     <Button x:Name="PART_PreviousButton" Width="50" HorizontalAlignment="Left" Grid.Column="0" Height="50" Padding="16" Focusable="False" Grid.Row="0" Style="{StaticResource ButtonIcon}" Tools:IconElement.Geometry="{StaticResource LeftGeometry}"/>
                                     <Button x:Name="PART_HeaderButton" Foreground="White" Grid.Column="1" FontSize="20" HorizontalAlignment="Center" Grid.Row="0" Style="{StaticResource ButtonCustom}"/>
                                     <Button x:Name="PART_NextButton" Width="50" HorizontalAlignment="Right" Height="50" Padding="16" Grid.Column="2" Focusable="False" Grid.Row="0" Style="{StaticResource ButtonIcon}" Tools:IconElement.Geometry="{StaticResource RightGeometry}"/>
@@ -240,7 +240,7 @@
                                     </Grid>
                             </Border>
                         </Border>
-                    </Tools:SimplePanel>
+                    </primitives:SimplePanel>
                     <ControlTemplate.Triggers>
                         
                         <DataTrigger Binding="{Binding DisplayMode, RelativeSource={RelativeSource  AncestorType=local:Calendar}}" Value="Year">
@@ -275,7 +275,7 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="CalendarDayButtonStyle" Value="{StaticResource CalendarDayButtonStyle}"/>
         <Setter Property="CalendarButtonStyle" Value="{StaticResource CalendarButtonStyle}"/>
-        <Setter Property="Tools:TitleElement.Background" Value="{DynamicResource TitleBrush}"/>
+        <Setter Property="controls:TitleElement.Background" Value="{DynamicResource TitleBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Calendar">

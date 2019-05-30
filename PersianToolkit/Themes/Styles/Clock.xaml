@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Tools="clr-namespace:PersianToolkit.Tools"
+                    xmlns:controls="clr-namespace:PersianToolkit"
+                    xmlns:primitives="clr-namespace:Microsoft.Windows.Controls.Primitives"
                     xmlns:Time="clr-namespace:PersianToolkit.Time">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Basic/Converters.xaml"/>
@@ -31,10 +33,10 @@
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    <Tools:SimplePanel x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                    <primitives:SimplePanel x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
                         <Ellipse x:Name="optionMark" Fill="{TemplateBinding Background}" MinWidth="6" MinHeight="6" Opacity="0"/>
                         <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                    </Tools:SimplePanel>
+                    </primitives:SimplePanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="true">
                             <Trigger.EnterActions>
@@ -64,7 +66,7 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Background" Value="{DynamicResource RegionBrush}"/>
         <Setter Property="ClockRadioButtonStyle" Value="{StaticResource ClockRadioButtonStyle}"/>
-        <Setter Property="Tools:TitleElement.Background" Value="{DynamicResource TitleBrush}"/>
+        <Setter Property="controls:TitleElement.Background" Value="{DynamicResource TitleBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Time:Clock">
@@ -74,7 +76,7 @@
                                 <RowDefinition Height="50"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Border Background="{Binding Path=(Tools:TitleElement.Background),RelativeSource={RelativeSource TemplatedParent}}" Name="PART_BorderTitle">
+                            <Border Background="{Binding Path=(controls:TitleElement.Background),RelativeSource={RelativeSource TemplatedParent}}" Name="PART_BorderTitle">
                                 <TextBlock x:Name="PART_TimeStr" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="White"/>
                             </Border>
                             <Border Grid.Row="1" Background="{TemplateBinding Background}">
