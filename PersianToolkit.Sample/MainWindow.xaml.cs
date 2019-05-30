@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media;
 
 namespace PersianToolkit.Sample
@@ -14,7 +13,6 @@ namespace PersianToolkit.Sample
             InitializeComponent();
 
             ColorStyle.SetHolidayDayBrush(pc, ResourceHelper.GetResource<Brush>(ResourceBrushToken.SuccessBrush));
-
         }
 
         private void BtnDef_Click(object sender, RoutedEventArgs e)
@@ -33,6 +31,34 @@ namespace PersianToolkit.Sample
         {
             ((App)Application.Current).UpdateSkin(SkinType.Violet);
 
+        }
+
+        private void CalendarWithClock_Confirmed()
+        {
+            MessageBox.Show(ct.SelectedDateTime.ToString());
+        }
+
+        private void BtnGetHijri_Click(object sender, RoutedEventArgs e)
+        {
+            //اگر تاریخ قمری نیاز به جلو یا عقب رفتن دارد میتوانید اختلاف موردنظر را تنظیم کنید
+            //pc.GetSelectedDateToHijriDate(-1);
+            MessageBox.Show(pc.GetSelectedDateToHijriDate().ToString());
+        }
+
+        private void BtnGetShamsi_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(pc.GetSelectedDateToPersianDate());
+        }
+
+        private void BtnGetGregorian_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(pc.GetSelectedDateToGregorianDate());
+
+        }
+
+        private void BtnHolidayContent_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(pc.GetSelectedDateHolidayContent());
         }
     }
 }
