@@ -22,6 +22,19 @@ namespace PersianToolkit
             return (Style)element.GetValue(HolidayContentStyleProperty);
         }
 
+        public static readonly DependencyProperty ConvertedDateStyleProperty = DependencyProperty.RegisterAttached(
+           "ConvertedDateStyle", typeof(Style), typeof(ColorStyle), new FrameworkPropertyMetadata(ResourceHelper.GetResource<Style>(ResourceHolidayContentStyleToken.LabelDefault), FrameworkPropertyMetadataOptions.Inherits));
+
+        public static void SetConvertedDateStyle(DependencyObject element, Style value)
+        {
+            element.SetValue(ConvertedDateStyleProperty, value);
+        }
+
+        public static Style GetConvertedDateStyle(DependencyObject element)
+        {
+            return (Style)element.GetValue(ConvertedDateStyleProperty);
+        }
+
         public static readonly DependencyProperty SelectedDateBrushProperty = DependencyProperty.RegisterAttached(
             "SelectedDateBrush", typeof(Brush), typeof(ColorStyle), new FrameworkPropertyMetadata(default(Brushes), FrameworkPropertyMetadataOptions.Inherits));
 

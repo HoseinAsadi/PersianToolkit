@@ -232,7 +232,7 @@
                                         </Grid.RowDefinitions>
                                     </Grid>
                                     <Grid Width="240" Grid.ColumnSpan="3" Visibility="Collapsed" x:Name="PART_ConvertedDate" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2">
-                                        <Label Style="{Binding Path=(controls:ColorStyle.HolidayContentStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource LabelDefault}}" HorizontalAlignment="Stretch">
+                                        <Label Style="{Binding Path=(controls:ColorStyle.ConvertedDateStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource LabelDefault}}" HorizontalAlignment="Stretch">
                                             <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Stretch" Name="lblConvertedDate" Text="{Binding Source={StaticResource HolidaySource}, Path=ConvertedDate, UpdateSourceTrigger=PropertyChanged}"/>
                                         </Label>
                                     </Grid>

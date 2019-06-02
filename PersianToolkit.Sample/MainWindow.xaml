@@ -30,6 +30,7 @@
             <StackPanel Orientation="Horizontal">
                 <pc:Calendar Margin="10" Name="pc" FontFamily="IranSans" 
                    HorizontalAlignment="Left"
+                             pc:ColorStyle.ConvertedDateStyle="{StaticResource LabelWarning}"
                             pc:CalendarAttached.ShowConvertedDate="True"
                      pc:CalendarAttached.ShowHoliday="{Binding ElementName=ShowHoliday, Path=IsChecked}"/>
                 <pc:CalendarWithClock Name="ct"  ShowConfirmButton="True"
