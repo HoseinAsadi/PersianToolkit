@@ -17,7 +17,6 @@
     <Style x:Key="CalendarButtonStyle" TargetType="primitives:CalendarButton">
         <Setter Property="MinWidth" Value="10"/>
         <Setter Property="MinHeight" Value="10"/>
-        <Setter Property="FontSize" Value="12"/>
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="32"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -74,7 +73,6 @@
     <Style x:Key="CalendarDayButtonStyle" TargetType="primitives:CalendarDayButton">
         <Setter Property="MinWidth" Value="10"/>
         <Setter Property="MinHeight" Value="10"/>
-        <Setter Property="FontSize" Value="12"/>
         <Setter Property="Width" Value="32"/>
         <Setter Property="Height" Value="32"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -154,7 +152,7 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <Trigger Property="controls:Holiday.ShowHoliday" Value="True">
+            <Trigger Property="controls:CalendarAttached.ShowHoliday" Value="True">
                 <Setter Property="primitives:HolidayHelper.Date" Value="{Binding}" />
             </Trigger>
         </Style.Triggers>
@@ -168,7 +166,7 @@
                 <ControlTemplate TargetType="primitives:CalendarItem">
                     <ControlTemplate.Resources>
                         <DataTemplate x:Key="DayTitleTemplate">
-                            <TextBlock Foreground="#FF333333" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
+                            <TextBlock Foreground="#FF333333" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,6,0,6" Text="{Binding}" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </ControlTemplate.Resources>
                     <primitives:SimplePanel x:Name="PART_Root">
@@ -252,7 +250,7 @@
                             <Setter Property="Visibility" TargetName="PART_YearView" Value="Visible"/>
                         </DataTrigger>
 
-                        <Trigger Property="controls:Holiday.ShowHoliday" Value="True">
+                        <Trigger Property="controls:CalendarAttached.ShowHoliday" Value="True">
                             <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Visible" />
                         </Trigger>
                         <DataTrigger Binding="{Binding ElementName=PART_YearView, Path=Visibility}" Value="Visible">

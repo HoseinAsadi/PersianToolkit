@@ -3,12 +3,12 @@
 namespace PersianToolkit
 {
     /// <summary>
-    /// کلاسی برای نمایش مناسبت ها
+    /// کلاسی برای پراپرتی های کاربردی
     /// </summary>
-    public class Holiday
+    public class CalendarAttached
     {
         public static readonly DependencyProperty ShowHolidayProperty = DependencyProperty.RegisterAttached(
-         "ShowHoliday", typeof(bool), typeof(Holiday), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.Inherits));
+         "ShowHoliday", typeof(bool), typeof(CalendarAttached), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.Inherits));
 
         public static void SetShowHoliday(DependencyObject element, bool value)
         {
@@ -19,5 +19,6 @@ namespace PersianToolkit
         {
             return (bool)element.GetValue(ShowHolidayProperty);
         }
+
     }
 }

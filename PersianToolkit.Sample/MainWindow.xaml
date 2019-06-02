@@ -30,7 +30,8 @@
             <StackPanel Orientation="Horizontal">
                 <pc:Calendar Margin="10" Name="pc" FontFamily="IranSans" 
                    HorizontalAlignment="Left"
-                     pc:Holiday.ShowHoliday="{Binding ElementName=ShowHoliday, Path=IsChecked}"/>
+                            
+                     pc:CalendarAttached.ShowHoliday="{Binding ElementName=ShowHoliday, Path=IsChecked}"/>
                 <pc:CalendarWithClock Name="ct"  ShowConfirmButton="True"
                                       Confirmed="CalendarWithClock_Confirmed" Margin="10"/>
             </StackPanel>

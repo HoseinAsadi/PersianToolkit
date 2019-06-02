@@ -13,7 +13,8 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -121,7 +122,7 @@
     <Compile Include="Converter\String2VisibilityReConverter.cs" />
     <Compile Include="Tools\ColorStyle.cs" />
     <Compile Include="Tools\ConfigHelper.cs" />
-    <Compile Include="Tools\Holiday.cs" />
+    <Compile Include="Tools\CalendarAttached.cs" />
     <Compile Include="Tools\HolidayHelper.cs" />
     <Compile Include="Tools\IconElement.cs" />
     <Compile Include="Tools\InfoElement.cs" />

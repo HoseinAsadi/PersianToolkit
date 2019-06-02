@@ -610,7 +610,7 @@ namespace Microsoft.Windows.Controls
                 throw new InvalidOperationException(SR.Get(SRID.Calendar_OnSelectedDateChanged_InvalidOperation));
             }
 
-            if (Holiday.GetShowHoliday(c))
+            if (CalendarAttached.GetShowHoliday(c))
             {
                 PersianCalendar pc = new PersianCalendar();
 
