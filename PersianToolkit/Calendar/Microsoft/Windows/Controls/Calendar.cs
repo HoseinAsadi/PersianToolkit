@@ -94,7 +94,7 @@ namespace Microsoft.Windows.Controls
             EventManager.RegisterClassHandler(typeof(Calendar), UIElement.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
             LanguageProperty.OverrideMetadata(typeof(Calendar), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnLanguageChanged)));
 
-
+           
         }
 
         /// <summary>
@@ -231,6 +231,8 @@ namespace Microsoft.Windows.Controls
             c.DisplayDateInternal = DateTimeHelper.DiscardDayTime((DateTime)e.NewValue);
             c.UpdateCellItems();
             c.OnDisplayDateChanged(new CalendarDateChangedEventArgs((DateTime)e.OldValue, (DateTime)e.NewValue));
+
+           
         }
 
         private static object CoerceDisplayDate(DependencyObject d, object value)
@@ -246,7 +248,7 @@ namespace Microsoft.Windows.Controls
             {
                 value = c.DisplayDateEnd.Value;
             }
-
+            
             return value;
         }
 
@@ -514,6 +516,7 @@ namespace Microsoft.Windows.Controls
             {
                 c.UpdateCellItems();
             }
+          
         }
 
         #endregion IsTodayHighlighted
@@ -653,10 +656,13 @@ namespace Microsoft.Windows.Controls
                 HolidayTool.HolidayTool.holy.HolidyContent = holy;
 
             }
+
+            if (CalendarAttached.GetShowConvertedDate(c))
+            {
+                IslamicDay hijriNow = IslamicDateUtils.GregorianToIslamicDay(c.SelectedDate.Value.Year, c.SelectedDate.Value.Month, c.SelectedDate.Value.Day - 1);
+                HolidayTool.HolidayTool.holy.ConvertedDate = hijriNow.ToString() + " قمری - " + c.SelectedDate.Value.ToString("yyyy/MM/dd") + " میلادی";
+            }
         }
-
-
-
 
         public string GetSelectedDateToGregorianDate()
         {
@@ -868,6 +874,7 @@ namespace Microsoft.Windows.Controls
         protected virtual void OnSelectedDatesChanged(SelectionChangedEventArgs e)
         {
             RaiseEvent(e);
+           
         }
 
         protected virtual void OnDisplayDateChanged(CalendarDateChangedEventArgs e)
@@ -1324,6 +1331,8 @@ namespace Microsoft.Windows.Controls
 
                 e.Handled = true;
             }
+
+         
         }
 
         private bool ProcessCalendarKey(KeyEventArgs e)
@@ -1816,6 +1825,21 @@ namespace HolidayTool
                 {
                     _HolidyContent = value;
                     OnPropertyChanged("HolidyContent");
+                }
+            }
+        }
+
+        private string _ConvertedDate;
+
+        public string ConvertedDate
+        {
+            get => _ConvertedDate;
+            set
+            {
+                if (value != _ConvertedDate)
+                {
+                    _ConvertedDate = value;
+                    OnPropertyChanged("ConvertedDate");
                 }
             }
         }

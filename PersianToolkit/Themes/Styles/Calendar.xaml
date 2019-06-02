@@ -192,6 +192,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Border Background="{Binding Path=(controls:TitleElement.Background),RelativeSource={RelativeSource TemplatedParent}}" Grid.ColumnSpan="3"/>
                                     <Button x:Name="PART_PreviousButton" Width="50" HorizontalAlignment="Left" Grid.Column="0" Height="50" Padding="16" Focusable="False" Grid.Row="0" Style="{StaticResource ButtonIcon}" Tools:IconElement.Geometry="{StaticResource LeftGeometry}"/>
@@ -230,7 +231,13 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                     </Grid>
-                                    <Grid Width="240" Grid.ColumnSpan="3" Visibility="Collapsed" x:Name="PART_HolidayView" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2">
+                                    <Grid Width="240" Grid.ColumnSpan="3" Visibility="Collapsed" x:Name="PART_ConvertedDate" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2">
+                                        <Label Style="{Binding Path=(controls:ColorStyle.HolidayContentStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource LabelDefault}}" HorizontalAlignment="Stretch">
+                                            <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Stretch" Name="lblConvertedDate" Text="{Binding Source={StaticResource HolidaySource}, Path=ConvertedDate, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </Label>
+                                    </Grid>
+                                    
+                                    <Grid Width="240" Grid.ColumnSpan="3" Visibility="Collapsed" x:Name="PART_HolidayView" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="3">
                                         <Label Style="{Binding Path=(controls:ColorStyle.HolidayContentStyle),RelativeSource={RelativeSource TemplatedParent}, FallbackValue={StaticResource LabelDefault}}" HorizontalAlignment="Stretch">
                                             <TextBlock TextWrapping="WrapWithOverflow" HorizontalAlignment="Stretch" Name="lblHoliday" Text="{Binding Source={StaticResource HolidaySource}, Path=HolidyContent, UpdateSourceTrigger=PropertyChanged}"/>
                                         </Label>
@@ -253,11 +260,18 @@
                         <Trigger Property="controls:CalendarAttached.ShowHoliday" Value="True">
                             <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Visible" />
                         </Trigger>
+                        <Trigger Property="controls:CalendarAttached.ShowConvertedDate" Value="True">
+                            <Setter TargetName="PART_ConvertedDate" Property="Visibility" Value="Visible" />
+                        </Trigger>
                         <DataTrigger Binding="{Binding ElementName=PART_YearView, Path=Visibility}" Value="Visible">
                             <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="PART_ConvertedDate" Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ElementName=lblHoliday, Path=Text}" Value="">
                             <Setter TargetName="PART_HolidayView" Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=lblConvertedDate, Path=Text}" Value="">
+                            <Setter TargetName="PART_ConvertedDate" Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
