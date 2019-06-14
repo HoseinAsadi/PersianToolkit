@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Microsoft.Windows.Controls;
+using System.Windows;
 
 namespace PersianToolkit
 {
@@ -7,8 +8,11 @@ namespace PersianToolkit
     /// </summary>
     public class CalendarAttached
     {
+        public static bool IsHolidayActivatedForFirstLuanch = false;
+        public static bool IsConvertDateActivatedForFirstLuanch = false;
+
         public static readonly DependencyProperty ShowHolidayProperty = DependencyProperty.RegisterAttached(
-         "ShowHoliday", typeof(bool), typeof(CalendarAttached), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.Inherits));
+         "ShowHoliday", typeof(bool), typeof(CalendarAttached), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.Inherits, OnIsShowHolidayChanged));
 
         public static void SetShowHoliday(DependencyObject element, bool value)
         {
@@ -20,8 +24,19 @@ namespace PersianToolkit
             return (bool)element.GetValue(ShowHolidayProperty);
         }
 
+        private static void OnIsShowHolidayChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is Calendar)
+            {
+                if (e.NewValue is bool boolValue)
+                {
+                    IsHolidayActivatedForFirstLuanch = boolValue;
+                }
+            }
+        }
+
         public static readonly DependencyProperty ShowConvertedDateProperty = DependencyProperty.RegisterAttached(
-         "ShowConvertedDate", typeof(bool), typeof(CalendarAttached), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.Inherits));
+         "ShowConvertedDate", typeof(bool), typeof(CalendarAttached), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.Inherits, OnIsConvertedDateChanged));
 
         public static void SetShowConvertedDate(DependencyObject element, bool value)
         {
@@ -33,6 +48,16 @@ namespace PersianToolkit
             return (bool)element.GetValue(ShowConvertedDateProperty);
         }
 
+        private static void OnIsConvertedDateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is Calendar)
+            {
+                if (e.NewValue is bool boolValue)
+                {
+                    IsConvertDateActivatedForFirstLuanch = boolValue;
+                }
+            }
+        }
         public static readonly DependencyProperty ClockConfirmProperty = DependencyProperty.RegisterAttached(
          "ClockConfirm", typeof(string), typeof(CalendarAttached), new FrameworkPropertyMetadata("تایید", FrameworkPropertyMetadataOptions.Inherits));
 

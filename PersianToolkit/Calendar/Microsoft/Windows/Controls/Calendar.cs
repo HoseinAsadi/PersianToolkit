@@ -709,46 +709,54 @@ namespace Microsoft.Windows.Controls
         private void InitializeDate()
         {
             IslamicDay hijriNow = IslamicDateUtils.GregorianToIslamicDay(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day - 1);
-            cal.ConvertedDate = hijriNow.ToString() + " قمری - " + DateTime.Now.ToString("yyyy/MM/dd") + " میلادی";
 
-            PersianCalendar pc = new PersianCalendar();
-
-            //Todo: every year must be checked
-            // -1 is HijriAdjustment for fixing right day
-            JObject oo = JObject.Parse(PersianToolkit.Properties.Resources.events);
-            string[] getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == pc.GetDayOfMonth(Convert.ToDateTime(DateTime.Now.Date)).ToString() &&
-            x.SelectToken("month").ToString() == pc.GetMonth(Convert.ToDateTime(DateTime.Now.Date)).ToString())
-                .Select(m => (string)m.SelectToken("title")).ToArray();
-
-            string[] getHijriEvents = oo["Hijri Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == hijriNow.Day.ToString() &&
-            x.SelectToken("month").ToString() == hijriNow.Month.ToString())
-                .Select(m => (string)m.SelectToken("title")).ToArray();
-
-            string[] getGregorianEvents = oo["Gregorian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == DateTime.Now.Day.ToString() &&
-           x.SelectToken("month").ToString() == DateTime.Now.Date.ToString())
-               .Select(m => (string)m.SelectToken("title")).ToArray();
-            string sep = string.Empty;
-            if (string.IsNullOrEmpty(string.Join(", ", getHijriEvents)))
+            if (CalendarAttached.IsHolidayActivatedForFirstLuanch)
             {
-                sep = string.Empty;
-            }
-            else
-            {
-                sep = ", ";
+                PersianCalendar pc = new PersianCalendar();
+
+                //Todo: every year must be checked
+                // -1 is HijriAdjustment for fixing right day
+                JObject oo = JObject.Parse(PersianToolkit.Properties.Resources.events);
+                string[] getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == pc.GetDayOfMonth(Convert.ToDateTime(DateTime.Now.Date)).ToString() &&
+                x.SelectToken("month").ToString() == pc.GetMonth(Convert.ToDateTime(DateTime.Now.Date)).ToString())
+                    .Select(m => (string)m.SelectToken("title")).ToArray();
+
+                string[] getHijriEvents = oo["Hijri Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == hijriNow.Day.ToString() &&
+                x.SelectToken("month").ToString() == hijriNow.Month.ToString())
+                    .Select(m => (string)m.SelectToken("title")).ToArray();
+
+                string[] getGregorianEvents = oo["Gregorian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == DateTime.Now.Day.ToString() &&
+               x.SelectToken("month").ToString() == DateTime.Now.Date.ToString())
+                   .Select(m => (string)m.SelectToken("title")).ToArray();
+                string sep = string.Empty;
+                if (string.IsNullOrEmpty(string.Join(", ", getHijriEvents)))
+                {
+                    sep = string.Empty;
+                }
+                else
+                {
+                    sep = ", ";
+                }
+
+                string holy = string.Join(", ", getPersianEvents) + sep + string.Join(", ", getHijriEvents) + string.Join(", ", getGregorianEvents);
+                if ((holy.Length - 1).Equals(","))
+                {
+                    holy = holy.Remove(holy.Length - 1);
+                }
+
+                if (holy.StartsWith(","))
+                {
+                    holy = holy.Remove(0, 1);
+                }
+
+                cal.HolidyContent = holy;
             }
 
-            string holy = string.Join(", ", getPersianEvents) + sep + string.Join(", ", getHijriEvents) + string.Join(", ", getGregorianEvents);
-            if ((holy.Length - 1).Equals(","))
+            if (CalendarAttached.IsConvertDateActivatedForFirstLuanch)
             {
-                holy = holy.Remove(holy.Length - 1);
-            }
+                cal.ConvertedDate = hijriNow.ToString() + " قمری - " + DateTime.Now.ToString("yyyy/MM/dd") + " میلادی";
 
-            if (holy.StartsWith(","))
-            {
-                holy = holy.Remove(0, 1);
             }
-
-            cal.HolidyContent = holy;
         }
         public string GetSelectedDateToGregorianDate()
         {
