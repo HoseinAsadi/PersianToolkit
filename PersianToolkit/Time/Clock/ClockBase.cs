@@ -41,8 +41,8 @@ namespace PersianToolkit.Time
 
         private static void OnSelectedTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var ctl = (ClockBase)d;
-            var v = (DateTime?)e.NewValue;
+            ClockBase ctl = (ClockBase)d;
+            DateTime? v = (DateTime?)e.NewValue;
             ctl.DisplayTime = v ?? DateTime.Now;
             ctl.OnSelectedTimeChanged(new FunctionEventArgs<DateTime?>(SelectedTimeChangedEvent, ctl)
             {
@@ -63,8 +63,8 @@ namespace PersianToolkit.Time
 
         private static void OnDisplayTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var ctl = (ClockBase)d;
-            var v = (DateTime)e.NewValue;
+            ClockBase ctl = (ClockBase)d;
+            DateTime v = (DateTime)e.NewValue;
             ctl.Update(v);
             ctl.OnDisplayTimeChanged(new FunctionEventArgs<DateTime>(v));
         }
@@ -84,11 +84,14 @@ namespace PersianToolkit.Time
             set => SetValue(ShowConfirmButtonProperty, value);
         }
 
-        protected virtual void OnSelectedTimeChanged(FunctionEventArgs<DateTime?> e) => RaiseEvent(e);
+        protected virtual void OnSelectedTimeChanged(FunctionEventArgs<DateTime?> e)
+        {
+            RaiseEvent(e);
+        }
 
         protected virtual void OnDisplayTimeChanged(FunctionEventArgs<DateTime> e)
         {
-            var handler = DisplayTimeChanged;
+            EventHandler<FunctionEventArgs<DateTime>> handler = DisplayTimeChanged;
             handler?.Invoke(this, e);
         }
 
@@ -100,6 +103,9 @@ namespace PersianToolkit.Time
 
         internal abstract void Update(DateTime time);
 
-        protected void Clock_SelectedTimeChanged(object sender, FunctionEventArgs<DateTime?> e) => SelectedTime = e.Info;
+        protected void Clock_SelectedTimeChanged(object sender, FunctionEventArgs<DateTime?> e)
+        {
+            SelectedTime = e.Info;
+        }
     }
 }

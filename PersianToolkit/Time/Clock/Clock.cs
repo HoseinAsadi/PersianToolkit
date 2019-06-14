@@ -132,7 +132,10 @@ namespace PersianToolkit.Time
             _circlePanel = GetTemplateChild(ElementPanelNum) as CirclePanel;
             _blockTime = GetTemplateChild(ElementTimeStr) as TextBlock;
 
-            if (!CheckNull()) return;
+            if (!CheckNull())
+            {
+                return;
+            }
 
             _buttonAm.Click += ButtonAm_OnClick;
             _buttonPm.Click += ButtonPm_OnClick;
@@ -147,10 +150,10 @@ namespace PersianToolkit.Time
             _borderClock.RenderTransform = _rotateTransformClock;
 
             _radioButtonList = new List<ClockRadioButton>();
-            for (var i = 0; i < 12; i++)
+            for (int i = 0; i < 12; i++)
             {
-                var num = i + 1;
-                var button = new ClockRadioButton
+                int num = i + 1;
+                ClockRadioButton button = new ClockRadioButton
                 {
                     Num = num,
                     Content = num
@@ -180,7 +183,10 @@ namespace PersianToolkit.Time
         {
             if (_buttonPm == null || _buttonAm == null || ButtonConfirm == null || _canvas == null ||
                 _borderTitle == null || _borderClock == null || _circlePanel == null ||
-                _blockTime == null) return false;
+                _blockTime == null)
+            {
+                return false;
+            }
 
             return true;
         }
@@ -202,7 +208,7 @@ namespace PersianToolkit.Time
 
         private void Canvas_OnMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            var value = (int)_rotateTransformClock.Angle;
+            int value = (int)_rotateTransformClock.Angle;
             if (e.Delta < 0)
             {
                 value += 6;
@@ -234,7 +240,7 @@ namespace PersianToolkit.Time
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                var value = ArithmeticHelper.CalAngle(new Point(85, 85), e.GetPosition(_canvas)) + 90;
+                double value = ArithmeticHelper.CalAngle(new Point(85, 85), e.GetPosition(_canvas)) + 90;
                 if (value < 0)
                 {
                     value = value + 360;
@@ -247,12 +253,19 @@ namespace PersianToolkit.Time
 
         private void Update()
         {
-            if (!AppliedTemplate) return;
-            var hValue = _currentButton.Num;
+            if (!AppliedTemplate)
+            {
+                return;
+            }
+
+            int hValue = _currentButton.Num;
             if (_buttonPm.IsChecked == true)
             {
                 hValue += 12;
-                if (hValue == 24) hValue = 12;
+                if (hValue == 24)
+                {
+                    hValue = 12;
+                }
             }
             else if (hValue == 12)
             {
@@ -277,9 +290,13 @@ namespace PersianToolkit.Time
         /// <param name="time"></param>
         internal override void Update(DateTime time)
         {
-            if (!AppliedTemplate) return;
-            var h = time.Hour;
-            var m = time.Minute;
+            if (!AppliedTemplate)
+            {
+                return;
+            }
+
+            int h = time.Hour;
+            int m = time.Minute;
 
             if (h >= 12)
             {
@@ -294,9 +311,13 @@ namespace PersianToolkit.Time
 
             _rotateTransformClock.Angle = m * 6;
 
-            var hRest = h % 12;
-            if (hRest == 0) hRest = 12;
-            var ctl = _radioButtonList[hRest - 1];
+            int hRest = h % 12;
+            if (hRest == 0)
+            {
+                hRest = 12;
+            }
+
+            ClockRadioButton ctl = _radioButtonList[hRest - 1];
             ctl.IsChecked = true;
             ctl.RaiseEvent(new RoutedEventArgs { RoutedEvent = ButtonBase.ClickEvent });
 
@@ -310,23 +331,32 @@ namespace PersianToolkit.Time
         /// <returns></returns>
         private DateTime GetDisplayTime()
         {
-            var hValue = _currentButton.Num;
+            int hValue = _currentButton.Num;
             if (_buttonPm.IsChecked == true)
             {
                 hValue += 12;
-                if (hValue == 24) hValue = 12;
+                if (hValue == 24)
+                {
+                    hValue = 12;
+                }
             }
             else if (hValue == 12)
             {
                 hValue = 0;
             }
-            var now = DateTime.Now;
+            DateTime now = DateTime.Now;
             return new DateTime(now.Year, now.Month, now.Day, hValue, (int)Math.Abs(_rotateTransformClock.Angle) % 360 / 6, _secValue);
         }
 
-        private void ButtonAm_OnClick(object sender, RoutedEventArgs e) => Update();
+        private void ButtonAm_OnClick(object sender, RoutedEventArgs e)
+        {
+            Update();
+        }
 
-        private void ButtonPm_OnClick(object sender, RoutedEventArgs e) => Update();
+        private void ButtonPm_OnClick(object sender, RoutedEventArgs e)
+        {
+            Update();
+        }
 
         #endregion Private Methods       
     }

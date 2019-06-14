@@ -19,7 +19,7 @@ namespace PersianToolkit
         {
             return (bool)element.GetValue(ShowHolidayProperty);
         }
-        
+
         public static readonly DependencyProperty ShowConvertedDateProperty = DependencyProperty.RegisterAttached(
          "ShowConvertedDate", typeof(bool), typeof(CalendarAttached), new FrameworkPropertyMetadata(ValueBoxes.FalseBox, FrameworkPropertyMetadataOptions.Inherits));
 

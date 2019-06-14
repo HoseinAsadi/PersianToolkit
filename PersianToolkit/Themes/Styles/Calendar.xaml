@@ -12,7 +12,7 @@
         <ResourceDictionary Source="Button.xaml"/>
         <ResourceDictionary Source="Label.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    <Holiday:HolidayTool x:Key="HolidaySource"/>
+    <local:Calendar x:Key="HolidaySource"/>
     
     <Style x:Key="CalendarButtonStyle" TargetType="primitives:CalendarButton">
         <Setter Property="MinWidth" Value="10"/>

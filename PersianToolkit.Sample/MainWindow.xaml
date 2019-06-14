@@ -15,6 +15,7 @@
                 <Button Margin="5,0" x:Name="btnDark" Content="Dark Theme" Click="BtnDark_Click"/>
                 <Button Margin="5,0" x:Name="btnVio" Content="Violet Theme" Click="BtnVio_Click"/>
                 <CheckBox Margin="5,0" VerticalAlignment="Center" x:Name="ShowHoliday" IsChecked="True" Content="Is Holiday Show?"/>
+                <CheckBox Margin="5,0" VerticalAlignment="Center" x:Name="ShowConvertedDate" IsChecked="True" Content="Is Converted Date Show?"/>
             </StackPanel>
             <StackPanel Margin="10" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Margin="5,0" x:Name="btnGetHijri" Content="تاریخ قمری" Click="BtnGetHijri_Click"/>
@@ -31,7 +32,7 @@
                 <pc:Calendar Margin="10" Name="pc" FontFamily="IranSans" 
                    HorizontalAlignment="Left"
                              pc:ColorStyle.ConvertedDateStyle="{StaticResource LabelWarning}"
-                            pc:CalendarAttached.ShowConvertedDate="True"
+                             pc:CalendarAttached.ShowConvertedDate="{Binding ElementName=ShowConvertedDate, Path=IsChecked}"
                      pc:CalendarAttached.ShowHoliday="{Binding ElementName=ShowHoliday, Path=IsChecked}"/>
                 <pc:CalendarWithClock Name="ct"  ShowConfirmButton="True"
                                       pc:CalendarAttached.AMString="صبح"

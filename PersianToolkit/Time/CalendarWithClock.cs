@@ -1,6 +1,5 @@
 ﻿
 using PersianToolkit.Time;
-using PersianToolkit.Tools;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -67,7 +66,11 @@ namespace PersianToolkit
             InitCalendarAndClock();
             Loaded += (s, e) =>
             {
-                if (_isLoaded) return;
+                if (_isLoaded)
+                {
+                    return;
+                }
+
                 _isLoaded = true;
                 DisplayDateTime = SelectedDateTime ?? DateTime.Now;
             };
@@ -98,8 +101,8 @@ namespace PersianToolkit
 
         private static void OnSelectedDateTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var ctl = (CalendarWithClock)d;
-            var v = (DateTime?)e.NewValue;
+            CalendarWithClock ctl = (CalendarWithClock)d;
+            DateTime? v = (DateTime?)e.NewValue;
             ctl.OnSelectedDateTimeChanged(new FunctionEventArgs<DateTime?>(SelectedDateTimeChangedEvent, ctl)
             {
                 Info = v
@@ -117,9 +120,13 @@ namespace PersianToolkit
 
         private static void OnDisplayDateTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var ctl = (CalendarWithClock)d;
-            if (ctl.IsHandlerSuspended(DisplayDateTimeProperty)) return;
-            var v = (DateTime)e.NewValue;
+            CalendarWithClock ctl = (CalendarWithClock)d;
+            if (ctl.IsHandlerSuspended(DisplayDateTimeProperty))
+            {
+                return;
+            }
+
+            DateTime v = (DateTime)e.NewValue;
             ctl._clock.SelectedTime = v;
             ctl._calendar.SelectedDate = v;
             ctl.OnDisplayDateTimeChanged(new FunctionEventArgs<DateTime>(v));
@@ -160,11 +167,14 @@ namespace PersianToolkit
 
         #region Protected Methods
 
-        protected virtual void OnSelectedDateTimeChanged(FunctionEventArgs<DateTime?> e) => RaiseEvent(e);
+        protected virtual void OnSelectedDateTimeChanged(FunctionEventArgs<DateTime?> e)
+        {
+            RaiseEvent(e);
+        }
 
         protected virtual void OnDisplayDateTimeChanged(FunctionEventArgs<DateTime> e)
         {
-            var handler = DisplayDateTimeChanged;
+            EventHandler<FunctionEventArgs<DateTime>> handler = DisplayDateTimeChanged;
             handler?.Invoke(this, e);
         }
 
@@ -209,7 +219,10 @@ namespace PersianToolkit
 
         private void CheckNull()
         {
-            if (_buttonConfirm == null || _clockPresenter == null || _calendarPresenter == null) throw new Exception();
+            if (_buttonConfirm == null || _clockPresenter == null || _calendarPresenter == null)
+            {
+                throw new Exception();
+            }
         }
 
         private void ButtonConfirm_OnClick(object sender, RoutedEventArgs e)
@@ -244,16 +257,19 @@ namespace PersianToolkit
             UpdateDisplayTime();
         }
 
-        private void Clock_DisplayTimeChanged(object sender, FunctionEventArgs<DateTime> e) => UpdateDisplayTime();
+        private void Clock_DisplayTimeChanged(object sender, FunctionEventArgs<DateTime> e)
+        {
+            UpdateDisplayTime();
+        }
 
         private void UpdateDisplayTime()
         {
             if (_calendar.SelectedDate != null)
             {
-                var date = _calendar.SelectedDate.Value;
-                var time = _clock.DisplayTime;
+                DateTime date = _calendar.SelectedDate.Value;
+                DateTime time = _clock.DisplayTime;
 
-                var result = new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, time.Second);
+                DateTime result = new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, time.Second);
                 SetValueNoCallback(DisplayDateTimeProperty, result);
             }
         }

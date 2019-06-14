@@ -26,8 +26,46 @@ namespace Microsoft.Windows.Controls
     /// </summary>
     [TemplatePart(Name = Calendar.ElementRoot, Type = typeof(Panel))]
     [TemplatePart(Name = Calendar.ElementMonth, Type = typeof(CalendarItem))]
-    public class Calendar : Control
+    public class Calendar : Control, INotifyPropertyChanged
     {
+        #region Holiday
+        internal static Calendar cal;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private string _HolidyContent;
+
+        public string HolidyContent
+        {
+            get => _HolidyContent;
+            set
+            {
+                if (value != _HolidyContent)
+                {
+                    _HolidyContent = value;
+                    OnPropertyChanged("HolidyContent");
+                }
+            }
+        }
+        private string _ConvertedDate;
+
+        public string ConvertedDate
+        {
+            get => _ConvertedDate;
+            set
+            {
+                if (value != _ConvertedDate)
+                {
+                    _ConvertedDate = value;
+                    OnPropertyChanged("ConvertedDate");
+                }
+            }
+        }
+        #endregion
         #region Constants
 
         private const string ElementRoot = "PART_Root";
@@ -94,7 +132,7 @@ namespace Microsoft.Windows.Controls
             EventManager.RegisterClassHandler(typeof(Calendar), UIElement.GotFocusEvent, new RoutedEventHandler(OnGotFocus));
             LanguageProperty.OverrideMetadata(typeof(Calendar), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnLanguageChanged)));
 
-           
+
         }
 
         /// <summary>
@@ -102,6 +140,8 @@ namespace Microsoft.Windows.Controls
         /// </summary>
         public Calendar()
         {
+            cal = this;
+
             _blackoutDates = new CalendarBlackoutDatesCollection(this);
             _selectedDates = new SelectedDatesCollection(this);
             DisplayDate = DateTime.Today;
@@ -118,6 +158,8 @@ namespace Microsoft.Windows.Controls
             ColorStyle.SetSelectedDateBrush(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.PrimaryBrush));
             ColorStyle.SetTodayDateBrush(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.DangerBrush));
             ColorStyle.SetHolidayDayBrush(this, ResourceHelper.GetResource<Brush>(ResourceBrushToken.WarningBrush));
+
+            InitializeDate();
         }
         #region Public Properties
 
@@ -232,7 +274,7 @@ namespace Microsoft.Windows.Controls
             c.UpdateCellItems();
             c.OnDisplayDateChanged(new CalendarDateChangedEventArgs((DateTime)e.OldValue, (DateTime)e.NewValue));
 
-           
+
         }
 
         private static object CoerceDisplayDate(DependencyObject d, object value)
@@ -248,7 +290,7 @@ namespace Microsoft.Windows.Controls
             {
                 value = c.DisplayDateEnd.Value;
             }
-            
+
             return value;
         }
 
@@ -516,7 +558,7 @@ namespace Microsoft.Windows.Controls
             {
                 c.UpdateCellItems();
             }
-          
+
         }
 
         #endregion IsTodayHighlighted
@@ -653,17 +695,61 @@ namespace Microsoft.Windows.Controls
                     holy = holy.Remove(0, 1);
                 }
 
-                HolidayTool.HolidayTool.holy.HolidyContent = holy;
+                cal.HolidyContent = holy;
 
             }
 
             if (CalendarAttached.GetShowConvertedDate(c))
             {
                 IslamicDay hijriNow = IslamicDateUtils.GregorianToIslamicDay(c.SelectedDate.Value.Year, c.SelectedDate.Value.Month, c.SelectedDate.Value.Day - 1);
-                HolidayTool.HolidayTool.holy.ConvertedDate = hijriNow.ToString() + " قمری - " + c.SelectedDate.Value.ToString("yyyy/MM/dd") + " میلادی";
+                cal.ConvertedDate = hijriNow.ToString() + " قمری - " + c.SelectedDate.Value.ToString("yyyy/MM/dd") + " میلادی";
             }
         }
 
+        private void InitializeDate()
+        {
+            IslamicDay hijriNow = IslamicDateUtils.GregorianToIslamicDay(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day - 1);
+            cal.ConvertedDate = hijriNow.ToString() + " قمری - " + DateTime.Now.ToString("yyyy/MM/dd") + " میلادی";
+
+            PersianCalendar pc = new PersianCalendar();
+
+            //Todo: every year must be checked
+            // -1 is HijriAdjustment for fixing right day
+            JObject oo = JObject.Parse(PersianToolkit.Properties.Resources.events);
+            string[] getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == pc.GetDayOfMonth(Convert.ToDateTime(DateTime.Now.Date)).ToString() &&
+            x.SelectToken("month").ToString() == pc.GetMonth(Convert.ToDateTime(DateTime.Now.Date)).ToString())
+                .Select(m => (string)m.SelectToken("title")).ToArray();
+
+            string[] getHijriEvents = oo["Hijri Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == hijriNow.Day.ToString() &&
+            x.SelectToken("month").ToString() == hijriNow.Month.ToString())
+                .Select(m => (string)m.SelectToken("title")).ToArray();
+
+            string[] getGregorianEvents = oo["Gregorian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == DateTime.Now.Day.ToString() &&
+           x.SelectToken("month").ToString() == DateTime.Now.Date.ToString())
+               .Select(m => (string)m.SelectToken("title")).ToArray();
+            string sep = string.Empty;
+            if (string.IsNullOrEmpty(string.Join(", ", getHijriEvents)))
+            {
+                sep = string.Empty;
+            }
+            else
+            {
+                sep = ", ";
+            }
+
+            string holy = string.Join(", ", getPersianEvents) + sep + string.Join(", ", getHijriEvents) + string.Join(", ", getGregorianEvents);
+            if ((holy.Length - 1).Equals(","))
+            {
+                holy = holy.Remove(holy.Length - 1);
+            }
+
+            if (holy.StartsWith(","))
+            {
+                holy = holy.Remove(0, 1);
+            }
+
+            cal.HolidyContent = holy;
+        }
         public string GetSelectedDateToGregorianDate()
         {
             GregorianCalendar pc = new GregorianCalendar();
@@ -705,7 +791,7 @@ namespace Microsoft.Windows.Controls
         }
         public string GetSelectedDateHolidayContent()
         {
-            return HolidayTool.HolidayTool.holy.HolidyContent;
+            return cal.HolidyContent;
         }
         public string SelectedDateToString()
         {
@@ -874,7 +960,7 @@ namespace Microsoft.Windows.Controls
         protected virtual void OnSelectedDatesChanged(SelectionChangedEventArgs e)
         {
             RaiseEvent(e);
-           
+
         }
 
         protected virtual void OnDisplayDateChanged(CalendarDateChangedEventArgs e)
@@ -1332,7 +1418,7 @@ namespace Microsoft.Windows.Controls
                 e.Handled = true;
             }
 
-         
+
         }
 
         private bool ProcessCalendarKey(KeyEventArgs e)
@@ -1796,52 +1882,5 @@ namespace Microsoft.Windows.Controls
         }
 
         #endregion Private Methods
-    }
-}
-namespace HolidayTool
-{
-    public class HolidayTool : INotifyPropertyChanged
-    {
-        internal static HolidayTool holy;
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public HolidayTool()
-        {
-            holy = this;
-        }
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        private string _HolidyContent;
-
-        public string HolidyContent
-        {
-            get => _HolidyContent;
-            set
-            {
-                if (value != _HolidyContent)
-                {
-                    _HolidyContent = value;
-                    OnPropertyChanged("HolidyContent");
-                }
-            }
-        }
-
-        private string _ConvertedDate;
-
-        public string ConvertedDate
-        {
-            get => _ConvertedDate;
-            set
-            {
-                if (value != _ConvertedDate)
-                {
-                    _ConvertedDate = value;
-                    OnPropertyChanged("ConvertedDate");
-                }
-            }
-        }
     }
 }
