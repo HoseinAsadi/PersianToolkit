@@ -1,4 +1,9 @@
 # <div dir="rtl">PersianToolkit</div>
+
+<div dir="rtl">پرشین تولکیت جزئی از فریمورک 
+[HandyControls](https://github.com/ghost1372/handyControls)
+ می باشد. جهت دریافت بروزرسانی ها لطفا به صفحه فریمورک مراجعه کنید</div>
+
 <div dir="rtl">پرشین تولکیت شامل تقویم و انتخاب کننده تاریخ، بصورت شمسی بوده که توانایی نمایش روزهای تعطیل، و عنوان مناسبت های میلادی، قمری و شمسی را دارد. همچنین پرشین تولکیت شامل توابع قدرتمندی جهت تبدیل تاریخ بصورت شمسی، قمری، و میلادی است.</div>
 
 ![Screen1](ScreenShot/1.png) <br> ![Screen2](ScreenShot/2.png)<br>  ![Screen3](ScreenShot/3.png)
